@@ -1,0 +1,3 @@
+subject,source_id,relative_path,status,target,notes
+数学,math-01,数学/数学1.pdf,sampled,subjects/mathematics/chapters/01-space-geometry.tex,已看封面和第2页；内容从空间几何及点线面记号开始
+物理,physics-01,物理/物理1.pdf,sampled,subjects/physics/chapters/01-curvilinear-motion.tex,共20页；已看封面和第2页；内容从曲线运动及平抛运动开始
