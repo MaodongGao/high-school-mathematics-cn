@@ -1,3 +1,3 @@
 subject,source_id,relative_path,status,target,notes
 数学,math-01,数学/数学1.pdf,complete,subjects/mathematics/chapters/01-space-geometry.tex,共23页；已逐页整理，例题均配图并提取定理、推论与有迁移价值的解法，已完成编译核对
-数学,math-11,数学/数学11.pdf,in-progress,subjects/mathematics/chapters/02-sequences.tex,共35页；重点例题与无歧义漏项已补齐，尚有第25页后半1组原稿辨识歧义待人工复核，详见 sources/math-11-example-audit.md 与 sources/math-11-review-notes.md
+数学,math-11,数学/数学11.pdf,complete,subjects/mathematics/chapters/02-sequences.tex,共35页；已完成逐页例题核对，原稿例题均已收录或明确合并，辨认与修正记录见 sources/math-11-example-audit.md 与 sources/math-11-review-notes.md

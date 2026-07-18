@@ -905,6 +905,50 @@
   \textbf{辨析：}若从 $k=2$ 就统一采用同一上界，只能得到较弱的常数。把少数边界项单独处理，常能显著改善整体估计。
 \end{examplebox}
 
+\begin{examplebox}[原稿例：改变起点改善平方倒数和的上界]
+  证明
+  \[
+    \frac1{4^2}+\frac1{5^2}+\cdots+\frac1{n^2}<\frac13
+    \qquad(n\ge4).
+  \]
+
+  \textbf{证明：}从第 $4$ 项开始统一放缩。对 $k\ge4$，
+  \[
+    \frac1{k^2}<\frac1{k(k-1)}
+      =\frac1{k-1}-\frac1k.
+  \]
+  因而
+  \[
+    \sum_{k=4}^{n}\frac1{k^2}
+      <\sum_{k=4}^{n}\left(\frac1{k-1}-\frac1k\right)
+      =\frac13-\frac1n<\frac13.
+  \]
+  \textbf{方法启示：}同一裂项上界从哪里开始使用，直接决定相消后留下的首端常数；改变求和起点，就能把上界从 $1$、$1/2$ 继续压到 $1/3$。
+\end{examplebox}
+
+\begin{examplebox}[原稿例：用两侧偶数项放缩奇数平方倒数和]
+  证明
+  \[
+    \frac1{3^2}+\frac1{5^2}+\cdots+\frac1{(2n+1)^2}<\frac14
+    \qquad(n\ge1).
+  \]
+
+  \textbf{证明：}对 $k\ge1$，用 $2k+1$ 两侧的偶数 $2k,2k+2$ 构造分母：
+  \begin{align*}
+    \frac1{(2k+1)^2}
+      &<\frac1{(2k)(2k+2)}\\
+      &=\frac1{4k(k+1)}
+       =\frac14\left(\frac1k-\frac1{k+1}\right).
+  \end{align*}
+  求和后得到
+  \[
+    \sum_{k=1}^{n}\frac1{(2k+1)^2}
+      <\frac14\left(1-\frac1{n+1}\right)<\frac14.
+  \]
+  \textbf{方法启示：}数列只取奇数下标时，不必强行沿用连续整数的
+  $k(k-1)$；应围绕奇数 $2k+1$ 换成两侧偶数 $2k,2k+2$，再按新的步长构造裂项。
+\end{examplebox}
+
 \begin{examplebox}[原稿例：三因子裂项估计立方倒数和]
   证明
   \[
@@ -931,7 +975,7 @@
   \textbf{方法启示：}分母含三个连续因子时，先把它拆成两个相邻二因子分式之差；这会把三次型估计转为一次裂项。
 \end{examplebox}
 
-\begin{examplebox}[原稿例：根式项的两种相邻放缩]
+\begin{examplebox}[原稿例：根式项的相邻与跨项放缩]
   设
   \[
     T_n=1+\frac1{\sqrt2}+\frac1{\sqrt3}+\cdots+\frac1{\sqrt n}.
@@ -960,7 +1004,21 @@
   \[
     T_n<1+2(\sqrt n-1)=2\sqrt n-1<2\sqrt n.
   \]
-  \textbf{方法启示：}同一个根式项，上界和下界要分别选择前后相邻的根式差；放缩方向改变，配对的下标也随之改变。
+  还有另一种上界。约定 $\sqrt0=0$，对 $k\ge1$，
+  \[
+    \frac1{\sqrt k}
+      <\frac2{\sqrt{k+1}+\sqrt{k-1}}
+      =\sqrt{k+1}-\sqrt{k-1}.
+  \]
+  它把首项也纳入同一公式，求和时形成两条交错的相消链：
+  \[
+    T_n<\sqrt n+\sqrt{n+1}-1.
+  \]
+  \textbf{方法启示：}同一个根式项不只有一种放缩。要得到下界，用
+  $2(\sqrt{k+1}-\sqrt k)$；要得到上界，可用
+  $2(\sqrt k-\sqrt{k-1})$，把首项单独保留，所得常数更紧；也可用
+  $\sqrt{k+1}-\sqrt{k-1}$，把首项统一纳入，但求和时要分别看奇、偶两条链。
+  应根据所需方向、端点和下标步长选择，而不是机械套用同一个根式差。
 \end{examplebox}
 
 \begin{examplebox}[原稿例：跨一项的根式差估计三次幂]
