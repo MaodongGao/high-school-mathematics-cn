@@ -8,6 +8,7 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{titlesec}
 \RequirePackage{tcolorbox}
+\tcbuselibrary{breakable}
 
 \definecolor{BookBlue}{HTML}{245B78}
 \definecolor{BookBlueLight}{HTML}{EAF2F6}
@@ -46,6 +47,7 @@
 \renewcommand{\footrulewidth}{0pt}
 
 \newtcolorbox{learninggoals}{
+  breakable,
   title=学习目标,
   colback=BookBlueLight,
   colframe=BookBlue,
@@ -60,6 +62,7 @@
 }
 
 \newtcolorbox{definitionbox}[1][]{
+  breakable,
   title={定义\if\relax\detokenize{#1}\relax\else：#1\fi},
   colback=BookBlueLight,
   colframe=BookBlue,
@@ -74,6 +77,7 @@
 }
 
 \newtcolorbox{lawbox}[1][]{
+  breakable,
   title={定理\if\relax\detokenize{#1}\relax\else：#1\fi},
   colback=BookBlueLight,
   colframe=BookBlue,
@@ -88,6 +92,7 @@
 }
 
 \newtcolorbox{corollarybox}[1][]{
+  breakable,
   title={推论\if\relax\detokenize{#1}\relax\else：#1\fi},
   colback=BookGreenLight,
   colframe=BookGreen,
@@ -102,6 +107,7 @@
 }
 
 \newtcolorbox{examplebox}[1][]{
+  breakable,
   title={例题\if\relax\detokenize{#1}\relax\else：#1\fi},
   colback=BookGray,
   colframe=BookGold,
@@ -116,6 +122,7 @@
 }
 
 \newtcolorbox{notebox}[1][]{
+  breakable,
   title={笔记\if\relax\detokenize{#1}\relax\else：#1\fi},
   colback=white,
   colframe=BookBlue!55,
@@ -130,6 +137,7 @@
 }
 
 \newtcolorbox{exercisebox}{
+  breakable,
   title=练习,
   colback=white,
   colframe=BookGold,

@@ -16,6 +16,13 @@
 
 需要 TeX Live 或 MacTeX，并确保 `xelatex`、`latexmk` 和 `biber` 可用。
 
+若使用 BasicTeX 轻量安装，还需安装 `tcolorbox` 跨页功能使用的 `pdfcol` 小包：
+
+```bash
+tlmgr init-usertree                 # 仅首次创建个人 TeX tree 时需要
+tlmgr --usermode install pdfcol
+```
+
 ```bash
 make pdf
 ```
