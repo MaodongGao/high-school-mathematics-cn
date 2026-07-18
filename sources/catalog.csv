@@ -1,2 +1,2 @@
 subject,source_id,relative_path,status,target,notes
-数学,math-01,数学/数学1.pdf,sampled,subjects/mathematics/chapters/01-space-geometry.tex,已看封面和第2页；内容从空间几何及点线面记号开始
+数学,math-01,数学/数学1.pdf,complete,subjects/mathematics/chapters/01-space-geometry.tex,共23页；已逐页整理为“立体几何初步”并完成编译核对

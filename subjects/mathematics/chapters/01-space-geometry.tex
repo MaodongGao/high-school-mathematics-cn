@@ -1,32 +1,315 @@
-\chapter{空间几何基础}
+\chapter{立体几何初步}
 \label{chap:space-geometry}
 
-\begin{learninggoals}
-  \begin{itemize}[leftmargin=2em]
-    \item 熟悉点、直线、平面的基本记号；
-    \item 能用规范符号描述点、线、面之间的位置关系；
-    \item 为后续学习平行、垂直与空间角建立语言基础。
-  \end{itemize}
-\end{learninggoals}
+\section{点、直线、平面}
 
-\sourcetodo{本章根据“数学/数学1.pdf”开始整理。目前仅抽样核对了封面和第 2 页。}
+平面是向四周无限延展的；图中常画成平行四边形，记作平面 $\alpha$，也可用其中不共线的三点记作平面 $ABC$。基本语言如下。
 
-\section{点、直线与平面}
+\begin{center}
+  \begin{tabular}{llll}
+    \toprule
+    关系 & 记号 & 关系 & 记号 \\
+    \midrule
+    点 $A$ 在直线 $l$ 上 & $A\in l$ & 点 $A$ 不在 $l$ 上 & $A\notin l$ \\
+    点 $A$ 在平面 $\alpha$ 内 & $A\in\alpha$ & 点 $A$ 不在 $\alpha$ 内 & $A\notin\alpha$ \\
+    直线 $l$ 在平面 $\alpha$ 内 & $l\subset\alpha$ & 直线 $l$ 与 $\alpha$ 相交 & $l\cap\alpha=A$ \\
+    两平面交于直线 $l$ & $\alpha\cap\beta=l$ & 两平面平行 & $\alpha\parallel\beta$ \\
+    \bottomrule
+  \end{tabular}
+\end{center}
 
-空间几何把点、直线和平面作为基本对象。通常用大写字母表示点，用小写字母表示直线，用希腊字母表示平面。
+点与直线之间用 $\in$；直线与平面之间用 $\subset$。不要写成 $l\in\alpha$。
 
-\begin{definitionbox}[基本记号]
-  设点为 $A$，直线为 $l$，平面为 $\alpha$。常见关系写作
+\subsection{平面的三个基本性质}
+
+\begin{lawbox}[点线面的基本性质]
+  \begin{enumerate}
+    \item 若直线 $l$ 上两点 $A,B$ 在平面 $\alpha$ 内，则 $l\subset\alpha$。
+    \item 不在同一直线上的三点确定唯一平面。
+    \item 若两个不重合平面有一个公共点 $P$，则它们相交于一条过 $P$ 的直线：$\alpha\cap\beta=l$，$P\in l$。
+  \end{enumerate}
+\end{lawbox}
+
+第二条立即给出三种常用的“确定平面”方式：
+
+\[
+  \boxed{\text{一条直线和线外一点}}
+  \qquad
+  \boxed{\text{两条相交直线}}
+  \qquad
+  \boxed{\text{两条平行直线}}.
+\]
+
+证明一条直线在平面内，通常只证直线上两点在该平面内；证明若干点共面，通常先用上述三种方式确定一个平面，再逐点验证。证明空间点共线，常把这些点同时放入两个平面，利用“两平面的公共点都在交线”这一事实。
+
+\begin{examplebox}[交线法证明共线]
+  已知若干点 $P,Q,R$ 同时属于两个不重合平面 $\alpha,\beta$。令 $\alpha\cap\beta=l$，则 $P,Q,R\in l$，故三点共线。此法的核心不是画图观察，而是为每个点建立“双重归属”。
+\end{examplebox}
+
+\section{空间两直线的位置关系}
+
+两直线若在同一平面内，则相交或平行；若不同在任何一个平面内，则称为\textbf{异面直线}。因此空间两直线只有三种位置关系：
+\[
+  \text{相交}\quad/\quad\text{平行}\quad/\quad\text{异面}.
+\]
+
+\begin{lawbox}[异面直线的快速判定]
+  若直线 $a$ 与平面 $\alpha$ 相交于 $A$，直线 $b\subset\alpha$ 且 $A\notin b$，则 $a,b$ 异面。
+\end{lawbox}
+
+证明只需反证：若 $a,b$ 共面于 $\beta$，则 $A\in a\subset\beta$ 且 $b\subset\alpha\cap\beta$；由于 $A\notin b$，两平面的交线不能同时容纳 $A$ 与 $b$，矛盾。
+
+\subsection{异面直线所成的角与公垂线}
+
+过空间任一点 $O$ 分别作 $a'\parallel a$、$b'\parallel b$，相交直线 $a',b'$ 所成的锐角或直角称为异面直线 $a,b$ 所成的角。平移所选点不改变该角，这是等角定理的直接应用：若两个角的两边分别平行且方向相同，则两角相等。
+
+若所成角为 $90^\circ$，记作 $a\perp b$；这一定义同时适用于相交直线和异面直线。两条异面直线有且只有一条公垂线段，其长度称为两异面直线间的距离。
+
+\section{平行关系}
+
+\subsection{直线与平面平行}
+
+若直线 $a$ 与平面 $\alpha$ 没有公共点，称 $a\parallel\alpha$。画图时把 $a$ 画成与平面内某条直线平行。
+
+\begin{lawbox}[线面平行的判定与性质]
+  \textbf{判定：}若 $a\not\subset\alpha$，$b\subset\alpha$ 且 $a\parallel b$，则 $a\parallel\alpha$。
+
+  \textbf{性质：}若 $a\parallel\alpha$，过 $a$ 的平面 $\beta$ 与 $\alpha$ 交于 $b$，则 $a\parallel b$。
+\end{lawbox}
+
+判定时是在平面内“找平行线”；性质则是用过已知直线的辅助平面“截出平行线”。两者方向相反，构成最常用的线面转化：
+\[
+  \text{线面平行}\ \Longleftrightarrow\ \text{线线平行（配合辅助平面）}.
+\]
+
+\subsection{平面与平面平行}
+
+若 $\alpha,\beta$ 没有公共点，称 $\alpha\parallel\beta$。
+
+\begin{lawbox}[面面平行的判定]
+  若平面 $\alpha$ 内两条相交直线 $a,b$ 都平行于平面 $\beta$，则 $\alpha\parallel\beta$。
+
+  等价地，若 $a,b\subset\alpha$，$a',b'\subset\beta$，$a\cap b=O$，$a'\cap b'=O'$，且 $a\parallel a'$、$b\parallel b'$，则 $\alpha\parallel\beta$。
+\end{lawbox}
+
+\begin{lawbox}[面面平行的性质]
+  \begin{enumerate}
+    \item 若 $\alpha\parallel\beta$，则 $\alpha$ 内任一直线都平行于 $\beta$。
+    \item 若 $\alpha\parallel\beta$，平面 $\gamma$ 分别与它们交于 $a,b$，则 $a\parallel b$。
+    \item 夹在两个平行平面间的平行线段相等；两平行平面间的距离处处相等。
+  \end{enumerate}
+\end{lawbox}
+
+\section{垂直关系}
+
+\subsection{直线与平面垂直}
+
+若直线 $l$ 与平面 $\alpha$ 内任意直线都垂直，称 $l\perp\alpha$；交点称为垂足。
+
+\begin{lawbox}[线面垂直的判定]
+  若 $m,n\subset\alpha$，$m\cap n=O$，且 $l\perp m$、$l\perp n$，则 $l\perp\alpha$。
+\end{lawbox}
+
+“两条相交直线”不可省略：只垂直于平面内一条直线，不能推出垂直于该平面。常用推论为
+\[
+  l\perp\alpha,\ m\parallel l\Rightarrow m\perp\alpha;\qquad
+  l\perp\alpha,\ m\perp\alpha\Rightarrow l\parallel m;\qquad
+  l\perp\alpha,\ l\perp\beta\Rightarrow\alpha\parallel\beta.
+\]
+过空间一点有且只有一条直线垂直于已知平面；过空间一点有且只有一个平面垂直于已知直线。
+
+\subsection{斜线、射影与三垂线定理}
+
+设 $P\notin\alpha$，$PO\perp\alpha$。$PO$ 是垂线段，$O$ 是 $P$ 在 $\alpha$ 上的射影；对 $A\in\alpha$、$A\ne O$，$PA$ 是斜线段，$OA$ 是 $PA$ 在 $\alpha$ 内的射影。
+
+\begin{lawbox}[三垂线定理及逆定理]
+  对平面内过 $A$ 的直线 $a$：
   \[
-    A \in l, \qquad A \in \alpha, \qquad l \subset \alpha.
+    a\perp OA\ \Longrightarrow\ a\perp PA,
+    \qquad
+    a\perp PA\ \Longrightarrow\ a\perp OA.
   \]
-  它们依次表示“点在直线上”“点在平面内”和“直线在平面内”。
-\end{definitionbox}
+  即：平面内一条直线垂直于斜线的射影，当且仅当它垂直于斜线本身。
+\end{lawbox}
 
-\begin{notebox}[录入约定]
-  手写稿中的图形将优先用 TikZ 重画；只有暂时难以重建的复杂图，才以裁切后的扫描图作为过渡。
-\end{notebox}
+\subsection{二面角与面面垂直}
 
-\begin{exercisebox}
-  用符号分别表示：点 $B$ 不在平面 $\alpha$ 内；直线 $m$ 不包含于平面 $\alpha$；直线 $l$ 与平面 $\alpha$ 平行。
-\end{exercisebox}
+从一条直线出发的两个半平面组成二面角，这条直线称为棱。过棱上一点，在两个半平面内分别作垂直于棱的射线，其夹角是二面角的平面角。
+
+若二面角的平面角为 $90^\circ$，称两平面互相垂直，记作 $\alpha\perp\beta$。
+
+\begin{lawbox}[面面垂直的判定与性质]
+  \textbf{判定：}若平面 $\beta$ 经过平面 $\alpha$ 的一条垂线，则 $\alpha\perp\beta$。
+
+  \textbf{性质：}若 $\alpha\perp\beta$，$\alpha\cap\beta=l$，直线 $a\subset\alpha$ 且 $a\perp l$，则 $a\perp\beta$。
+\end{lawbox}
+
+\subsection{空间角的两个高密度公式}
+
+若直线与三条两两垂直的坐标轴所成角分别为 $\alpha,\beta,\gamma$，则方向余弦满足
+\[
+  \cos^2\alpha+\cos^2\beta+\cos^2\gamma=1,
+  \qquad
+  \sin^2\alpha+\sin^2\beta+\sin^2\gamma=2.
+\]
+
+\section{多面体}
+
+由若干平面多边形围成的几何体称为多面体；围成它的多边形是面，相邻面的公共边是棱，棱的公共端点是顶点。若多面体位于每个面的同一侧，称为凸多面体，否则为凹多面体。
+
+\subsection{棱柱、棱锥与棱台}
+
+\begin{description}
+  \item[棱柱] 两个面互相平行，其余各面为平行四边形，且相邻侧面的公共边互相平行。平行的两个面是底面，其余为侧面。侧棱垂直底面的棱柱是直棱柱；底面为正多边形的直棱柱是正棱柱。
+  \item[平行六面体] 底面为平行四边形的四棱柱。六个面都是矩形时为长方体；六个面都是正方形时为正方体。
+  \item[棱锥] 一个面是多边形，其余各面是有公共顶点的三角形。若底面为正多边形且顶点在底面的射影为底面中心，称为正棱锥。
+  \item[棱台] 用平行于棱锥底面的平面截棱锥，截面与原底面之间的部分称为棱台；由正棱锥截得的是正棱台。
+\end{description}
+
+正棱锥的侧棱相等，各侧面是全等的等腰三角形；侧面等腰三角形底边上的高称为斜高。设底面周长为 $p$、斜高为 $l$，则
+\[
+  S_{\text{正棱锥侧}}=\frac12pl.
+\]
+正棱台上下底周长为 $p,p'$、斜高为 $l$，则
+\[
+  S_{\text{正棱台侧}}=\frac12(p+p')l.
+\]
+
+\section{旋转体、表面积与体积}
+
+矩形、直角三角形、直角梯形分别绕其一条直角边旋转，得到圆柱、圆锥、圆台；旋转轴所在的截面称为轴截面。
+
+\begin{center}
+  \begin{tabular}{llll}
+    \toprule
+    几何体 & 侧面积 & 全面积 & 体积 \\
+    \midrule
+    直棱柱 & $ph$ & $ph+2S$ & $Sh$ \\
+    圆柱 & $2\pi rl$ & $2\pi r(r+l)$ & $\pi r^2h$ \\
+    圆锥 & $\pi rl$ & $\pi r(r+l)$ & $\frac13\pi r^2h$ \\
+    圆台 & $\pi(r_1+r_2)l$ & $\pi(r_1+r_2)l+\pi(r_1^2+r_2^2)$ & $\frac13\pi h(r_1^2+r_1r_2+r_2^2)$ \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+其中 $S$ 为底面积，$p$ 为底面周长，$h$ 为高，$l$ 为母线或斜高。
+
+\subsection{祖氏原理与统一体积公式}
+
+\begin{lawbox}[祖氏原理（等幂等积）]
+  夹在两个平行平面之间的两个几何体，若在任意等高处的截面面积都相等，则两几何体体积相等。
+\end{lawbox}
+
+它把柱体与柱体、锥体与锥体的体积统一起来：
+\[
+  V_{\text{柱体}}=Sh,
+  \qquad
+  V_{\text{锥体}}=\frac13Sh,
+  \qquad
+  V_{\text{台体}}=\frac h3\left(S+\sqrt{SS'}+S'\right).
+\]
+
+台体公式来自补成大锥体。若小锥与大锥相似，底面积分别为 $S',S$，对应高为 $x,x+h$，则
+\[
+  \frac{x}{x+h}=\sqrt{\frac{S'}S};
+\]
+用“大锥体积减小锥体积”消去 $x$ 即得台体公式。体积题的基本路线只有三类：直接套公式、等体积转化、分割与补形。
+
+\section{球}
+
+半圆绕直径旋转所得的几何体是球；半圆弧旋转所得曲面是球面。球心记为 $O$，半径为 $R$，直径为 $2R$。
+
+球面被任一平面截得的截线是圆。若球心到截面的距离为 $d$、截面圆半径为 $r$，则
+\[
+  r^2+d^2=R^2.
+\]
+过球心的截面圆称为大圆；球面上两点间的最短球面距离沿过两点的大圆劣弧量取。
+
+\[
+  S_{\text{球}}=4\pi R^2,
+  \qquad
+  V_{\text{球}}=\frac43\pi R^3.
+\]
+
+\subsection{内切球与外接球}
+
+球面与多面体各面相切时，球为多面体的内切球。设内切球半径为 $r$、多面体表面积为 $S_{\text{表}}$，把球心与各面连接并分割成若干棱锥，有
+\[
+  V=\frac13rS_{\text{表}}.
+\]
+
+球面经过多面体全部顶点时，球为多面体的外接球。正四面体棱长为 $a$ 时：
+\[
+  h=\frac{\sqrt6}{3}a,
+  \qquad
+  r=\frac{\sqrt6}{12}a,
+  \qquad
+  R=\frac{\sqrt6}{4}a,
+  \qquad
+  R=3r.
+\]
+
+处理内外接球题，先找对称轴与截面：把空间问题压缩为包含球心、切点或顶点的平面图形，再用勾股定理。
+
+\section{投影、三视图与直观图}
+
+光线照射物体，在平面上形成的影子是投影。投影线交于一点的是中心投影；投影线互相平行的是平行投影。平行投影又分为斜投影和正投影（投影线垂直投影面）。
+
+平行投影保持共线性和平行性；与投影面平行的线段、平面图形保持真实长度与形状。它一般不保持角度，也不保持不与投影面平行的长度。
+
+\subsection{三视图}
+
+正视图、侧视图、俯视图分别反映物体的
+\[
+  \text{长与高},\qquad\text{宽与高},\qquad\text{长与宽}.
+\]
+排图遵循“长对正、高平齐、宽相等”。可见轮廓画实线，不可见棱画虚线。由三视图还原几何体时，先由俯视图定底面位置，再由正、侧视图补高度。
+
+\subsection{斜二测直观图}
+
+通常取 $x$ 轴水平、$z$ 轴竖直、$y$ 轴与 $x$ 轴成 $45^\circ$ 或 $135^\circ$。与 $x,z$ 轴平行的长度不变，与 $y$ 轴平行的长度取原来的一半；平行关系保持不变。先画底面，再沿 $z$ 轴补高度，最后连接并区分实、虚线。
+
+\section{三余弦定理}
+
+设 $P\notin\alpha$，$PO\perp\alpha$，$A,B\in\alpha$。$OA$ 是斜线 $PA$ 在平面 $\alpha$ 内的射影。令
+\[
+  \angle PAO=\theta,
+  \qquad
+  \angle OAB=\varphi,
+  \qquad
+  \angle PAB=\psi.
+\]
+
+\begin{lawbox}[三余弦定理]
+  \[
+    \boxed{\cos\psi=\cos\theta\cos\varphi}.
+  \]
+  即：斜线与平面内直线夹角的余弦，等于斜线与其射影夹角的余弦乘以射影与该直线夹角的余弦。
+\end{lawbox}
+
+证明只用正射影。因为 $PO\perp AB$，
+\[
+  \overrightarrow{AP}\cdot\overrightarrow{AB}
+  =\left(\overrightarrow{AO}+\overrightarrow{OP}\right)\cdot\overrightarrow{AB}
+  =\overrightarrow{AO}\cdot\overrightarrow{AB}.
+\]
+两边除以 $|AP|\,|AB|$，再插入 $|AO|/|AP|=\cos\theta$，即得结论。令 $\psi=90^\circ$，便得到三垂线定理及其逆定理。
+
+\section{判定链速查}
+
+\begin{center}
+  \begin{tabularx}{\textwidth}{@{}lX@{}}
+    \toprule
+    目标 & 最短判定链 \\
+    \midrule
+    线在面内 & 线上两点在面内 \\
+    点共线 & 同时属于两个相交平面 \\
+    线面平行 & 面外直线 $\parallel$ 面内直线 \\
+    面面平行 & 一面内两相交直线分别 $\parallel$ 另一面 \\
+    线面垂直 & 直线垂直于面内两相交直线 \\
+    面面垂直 & 一平面经过另一平面的垂线 \\
+    异面线垂直 & 平移成相交直线后夹角为 $90^\circ$ \\
+    斜线垂直面内线 & 转化为其射影垂直该线 \\
+    \bottomrule
+  \end{tabularx}
+\end{center}

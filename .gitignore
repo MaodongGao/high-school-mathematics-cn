@@ -23,4 +23,5 @@ output/pdf/*.pdf
 
 # Local source material and operating-system files
 sources/originals/
+tmp/
 .DS_Store
