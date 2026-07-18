@@ -1,0 +1,568 @@
+\chapter{数列}
+\label{chap:sequences}
+
+\begin{learninggoals}
+  \begin{enumerate}
+    \item 在通项、递推关系与前 $n$ 项和之间转换，并据此判断数列的单调性；
+    \item 掌握等差、等比数列的结构与求和公式，理解公式成立的条件；
+    \item 能从项的形状选择分组、错位相减或裂项相消；
+    \item 能通过平移、倒数、除以指数项或特征根，把递推关系化为熟悉的数列；
+    \item 会用可相消的放缩处理数列不等式，而不只停留在逐项估计。
+  \end{enumerate}
+\end{learninggoals}
+
+\section{数列的语言与基本关系}
+
+\begin{definitionbox}[数列、通项与递推关系]
+  按照一定次序排列的一列数称为\textbf{数列}，记作
+  \[
+    a_1,a_2,\ldots,a_n,\ldots,
+    \qquad\text{或}\qquad \{a_n\}.
+  \]
+  $a_n$ 是第 $n$ 项。若 $a_n$ 可由 $n$ 的式子直接表示，这个式子称为通项公式；若从已知的前若干项能够依次确定后项，这种关系称为递推关系。
+\end{definitionbox}
+
+数列可看作定义域为正整数集（或其有限子集）的函数。它既可以列表，也可以用通项、递推关系或点列 $(n,a_n)$ 表示。因为自变量只取整数，研究其增减时必须比较相邻两项，不能把连续函数的结论不加辨析地搬过来。
+
+\begin{center}
+\begin{tikzpicture}[x=.72cm,y=.34cm]
+  \draw[-{Latex[length=2mm]},BookBlue] (0,0)--(8.3,0) node[right] {$n$};
+  \draw[-{Latex[length=2mm]},BookBlue] (0,-2)--(0,5.2) node[above] {$a_n$};
+  \foreach \x in {1,...,7} \draw[BookBlue!45] (\x,.11)--(\x,-.11) node[below=3pt,font=\scriptsize] {\x};
+  \foreach \x in {1,...,7} {
+    \pgfmathsetmacro{\y}{(\x-4.5)*(\x-4.5)/2-1.125}
+    \fill[BookGold] (\x,\y) circle (2pt);
+  }
+  \draw[BookGold,dashed] plot[smooth,domain=.7:7.3,samples=60] (\x,{(\x-4.5)*(\x-4.5)/2-1.125});
+  \node[align=left,font=\small,BookGreen!70!black] at (10,2.2) {虚线只帮助观察趋势；\\数列本身是离散的点。};
+\end{tikzpicture}
+\end{center}
+
+\subsection{部分和与通项}
+
+记
+\[
+  S_n=a_1+a_2+\cdots+a_n.
+\]
+
+\begin{lawbox}[由前 $n$ 项和恢复通项]
+  \[
+    a_1=S_1,\qquad a_n=S_n-S_{n-1}\quad(n\ge 2).
+  \]
+  第二个式子不能直接用于 $n=1$，除非另行约定 $S_0=0$。
+\end{lawbox}
+
+\begin{corollarybox}[判断单调性的两个入口]
+  对相邻两项作差：
+  \[
+    a_{n+1}-a_n\gtreqless 0;
+  \]
+  当各项同号且分式、指数结构明显时，也可比较
+  \[
+    \frac{a_{n+1}}{a_n}\gtreqless 1.
+  \]
+  比值法必须先确认分母和各项的符号；符号不定时，作差通常更稳妥。
+\end{corollarybox}
+
+\begin{examplebox}[原稿型：离散自变量下的增减转折]
+  设 $a_n=n^2-9n$，判断数列的单调性。
+
+  \textbf{解：}比较相邻两项：
+  \[
+    a_{n+1}-a_n=(n+1)^2-9(n+1)-(n^2-9n)=2n-8.
+  \]
+  当 $1\le n<4$ 时差为负；$n=4$ 时差为零；$n>4$ 时差为正。因此
+  \[
+    a_1>a_2>a_3>a_4=a_5<a_6<a_7<\cdots.
+  \]
+  \textbf{辨析：}把 $a_n$ 配方为 $(n-\tfrac92)^2-\tfrac{81}{4}$ 可以看出趋势，但顶点横坐标不是整数；只有比较 $a_4,a_5$，才能准确写出离散数列的最低项。
+\end{examplebox}
+
+\section{等差数列}
+
+\begin{definitionbox}[等差数列]
+  从第 $2$ 项起，每一项与前一项的差等于同一个常数 $d$，即
+  \[
+    a_n-a_{n-1}=d\quad(n\ge2),
+  \]
+  则称 $\{a_n\}$ 为等差数列，$d$ 为公差。
+\end{definitionbox}
+
+把从 $a_1$ 到 $a_n$ 的相邻差相加，左端逐项抵消：
+\[
+  (a_2-a_1)+(a_3-a_2)+\cdots+(a_n-a_{n-1})=(n-1)d.
+\]
+由此得到通项公式。
+
+\begin{lawbox}[等差数列的通项与前 $n$ 项和]
+  \[
+    a_n=a_1+(n-1)d,
+    \qquad
+    S_n=\frac{n(a_1+a_n)}2
+       =na_1+\frac{n(n-1)}2d.
+  \]
+  第二个公式来自倒序相加：$S_n$ 与倒写后的 $S_n$ 对应相加，每一列都等于 $a_1+a_n$。
+\end{lawbox}
+
+\begin{corollarybox}[等差数列的对称性]
+  若下标满足 $i+j=p+q$，则
+  \[
+    a_i+a_j=a_p+a_q.
+  \]
+  特别地，若 $i+j=2m$，则 $a_i+a_j=2a_m$。三个数 $a,b,c$ 成等差数列的充要条件是 $2b=a+c$。
+\end{corollarybox}
+
+\begin{corollarybox}[从任意一项表示和]
+  对任意固定的 $m$，有
+  \[
+    S_n=na_m+\frac{n(n+1-2m)}2d.
+  \]
+  当 $m=(n+1)/2$ 时，第二项消失，这就是“项数乘中间项”；项数为偶数时，则使用中间两项的平均数。
+\end{corollarybox}
+
+\subsection{部分和的离散抛物线结构}
+
+\[
+  S_n=\frac d2n^2+\left(a_1-\frac d2\right)n.
+\]
+当 $d\ne0$ 时，$S_n$ 是关于 $n$ 的二次式，但只在正整数点上取值。求最大、最小值时，可以先找抛物线对称轴，再比较轴两侧相邻的整数点；也可以直接观察 $S_n-S_{n-1}=a_n$ 的符号变化。
+
+\begin{corollarybox}[等差数列前 $n$ 项和的极值]
+  \begin{itemize}
+    \item 若 $d<0$，且 $a_m\ge0$、$a_{m+1}\le0$，则 $S_m$ 为最大值；
+    \item 若 $d>0$，且 $a_m\le0$、$a_{m+1}\ge0$，则 $S_m$ 为最小值；
+    \item 若某一项等于 $0$，相邻两个部分和可能同时取得极值。
+  \end{itemize}
+  本质是 $S_n$ 的相邻差恰为 $a_n$。
+\end{corollarybox}
+
+\begin{examplebox}[原稿例：平方条件揭示相邻项]
+  等差数列 $\{a_n\}$ 的公差 $d\ne0$，前 $n$ 项和为 $S_n$，且
+  \[
+    a_2^2+a_3^2=a_4^2+a_5^2,\qquad S_7=7.
+  \]
+  求 $a_n$ 与 $S_n$。
+
+  \textbf{解：}设公差为 $d$。移项并作平方差分解：
+  \begin{align*}
+    a_2^2-a_4^2&=a_5^2-a_3^2,\\
+    (a_2-a_4)(a_2+a_4)&=(a_5-a_3)(a_5+a_3).
+  \end{align*}
+  因为 $a_2-a_4=-2d$、$a_5-a_3=2d$，且 $d\ne0$，约去 $2d$ 后得
+  \[
+    -(a_2+a_4)=a_5+a_3.
+  \]
+  利用下标对称，$a_2+a_4=2a_3$、$a_3+a_5=2a_4$，上式等价于
+  \[
+    a_3=-a_4.
+  \]
+  又 $S_7=7a_4=7$，故 $a_4=1$、$a_3=-1$，从而 $d=2$。因此
+  \[
+    \boxed{a_n=2n-7},\qquad
+    \boxed{S_n=n^2-6n}.
+  \]
+  \textbf{方法启示：}平方条件先用平方差拆开，再把“项的和”转成下标和相同的对称关系；这比一开始完全展开 $a_1,d$ 更能暴露结构。
+\end{examplebox}
+
+\begin{examplebox}[原稿方法：由两组部分和之比求中间项之比]
+  两个等差数列 $\{a_n\}$、$\{b_n\}$ 的前 $n$ 项和分别为 $S_n,T_n$。已知
+  \[
+    \frac{S_n}{T_n}=\frac{7n+1}{4n+27},
+  \]
+  求 $a_{11}/b_{11}$。
+
+  \textbf{解：}等差数列连续奇数项的和等于“项数乘中间项”，所以
+  \[
+    S_{21}=21a_{11},\qquad T_{21}=21b_{11}.
+  \]
+  直接把 $n=21$ 代入已知比式：
+  \[
+    \frac{a_{11}}{b_{11}}
+    =\frac{S_{21}}{T_{21}}
+    =\frac{7\cdot21+1}{4\cdot21+27}
+    =\boxed{\frac43}.
+  \]
+  \textbf{关键转化：}要求第 $m$ 项之比，应想到取前 $2m-1$ 项，使 $a_m,b_m$ 同时成为各自的中间项。
+\end{examplebox}
+
+\section{等比数列}
+
+\begin{definitionbox}[等比数列]
+  从第 $2$ 项起，每一项与前一项的比等于同一个非零常数 $q$：
+  \[
+    \frac{a_n}{a_{n-1}}=q\quad(n\ge2),
+  \]
+  则称 $\{a_n\}$ 为等比数列，$q$ 为公比。按此定义，等比数列的每一项都不为零。
+\end{definitionbox}
+
+\begin{lawbox}[等比数列的通项与前 $n$ 项和]
+  \[
+    a_n=a_1q^{n-1},
+  \]
+  并且
+  \[
+    S_n=
+    \begin{cases}
+      \dfrac{a_1(1-q^n)}{1-q},&q\ne1,\\[6pt]
+      na_1,&q=1.
+    \end{cases}
+  \]
+  当 $q\ne1$ 时，将 $S_n$ 与 $qS_n$ 错开相减，除首尾两项外全部抵消。$q=1$ 时不能除以 $1-q$，必须单独讨论。
+\end{lawbox}
+
+\begin{corollarybox}[等比数列的下标结构]
+  \[
+    a_n=a_mq^{n-m}.
+  \]
+  若 $i+j=p+q$，则 $a_i a_j=a_p a_q$；特别地，$i+j=2m$ 时有 $a_i a_j=a_m^2$。
+
+  三个非零数 $a,b,c$ 成等比数列的充要条件是 $b^2=ac$ 且相邻两项比值相同。只写 $b^2=ac$ 时必须防止 $0,0,1$ 这类反例。
+\end{corollarybox}
+
+\begin{corollarybox}[等比数列的单调性]
+  由
+  \[
+    a_{n+1}-a_n=a_1q^{n-1}(q-1)
+  \]
+  可知：当 $q>0$ 时结合 $a_1$ 与 $q-1$ 的符号判断增减；$q=1$ 时为常数列；$q<0$ 时各项正负交替，通常不是单调数列。不能只看 $q$ 是否大于 $1$。
+\end{corollarybox}
+
+\begin{corollarybox}[等比分组仍保留等比结构]
+  若 $\{a_n\}$ 为等比数列，把相邻的 $m$ 项分为一组，则各组的和
+  \[
+    S_m,\quad S_{2m}-S_m,\quad S_{3m}-S_{2m},\ldots
+  \]
+  依次相差因子 $q^m$，因而在各组非零时构成等比数列。
+\end{corollarybox}
+
+\begin{examplebox}[原稿例：带线性系数的等比求和]
+  求
+  \[
+    S_n=\frac12+2\left(\frac12\right)^2
+       +3\left(\frac12\right)^3+\cdots
+       +n\left(\frac12\right)^n.
+  \]
+
+  \textbf{解：}乘以公比 $1/2$，使同次幂错位：
+  \begin{align*}
+    S_n&=\frac12+2\left(\frac12\right)^2+cdots+n\left(\frac12\right)^n,\\
+    \frac12S_n&=\left(\frac12\right)^2+2\left(\frac12\right)^3+cdots
+      +(n-1)\left(\frac12\right)^n+n\left(\frac12\right)^{n+1}.
+  \end{align*}
+  相减后，中间各项的系数都变成 $1$：
+  \begin{align*}
+    \frac12S_n
+      &=\frac12+\left(\frac12\right)^2+\cdots+\left(\frac12\right)^n
+        -n\left(\frac12\right)^{n+1}\\
+      &=1-\frac1{2^n}-\frac n{2^{n+1}}.
+  \end{align*}
+  所以
+  \[
+    \boxed{S_n=2-\frac{n+2}{2^n}}.
+  \]
+  \textbf{方法启示：}“等差系数乘等比项”应先乘公比再错位相减；相减的目的，是把线性系数降为常数。
+\end{examplebox}
+
+\section{数列求和的结构}
+
+\subsection{常用有限和}
+
+\begin{lawbox}[三组基本公式]
+  \begin{align*}
+    1+2+\cdots+n&=\frac{n(n+1)}2,\\
+    1^2+2^2+\cdots+n^2&=\frac{n(n+1)(2n+1)}6,\\
+    1^3+2^3+\cdots+n^3&=\left[\frac{n(n+1)}2\right]^2.
+  \end{align*}
+\end{lawbox}
+
+平方和公式可以从
+\[
+  (k+1)^3-k^3=3k^2+3k+1
+\]
+对 $k=1,2,\ldots,n$ 求和得到；立方和公式则可从四次方差分出发。这里的共同思想是：把目标项嵌进一个能首尾相消的差分式。
+
+\subsection{裂项相消}
+
+\begin{corollarybox}[常见裂项形状]
+  \begin{align*}
+    \frac1{n(n+1)}&=\frac1n-\frac1{n+1},\\
+    \frac1{n(n+k)}&=\frac1k\left(\frac1n-\frac1{n+k}\right),\\
+    \frac1{(n-1)n(n+1)}&=\frac12\left(\frac1{(n-1)n}-\frac1{n(n+1)}\right),\\
+    \frac1{\sqrt{n+1}+\sqrt n}&=\sqrt{n+1}-\sqrt n,\\
+    \frac{n}{(n+1)!}&=\frac1{n!}-\frac1{(n+1)!}.
+  \end{align*}
+  裂项不是机械背公式：先观察分母相邻因子的差，再让拆开的两项在连续求和中对齐。
+\end{corollarybox}
+
+\begin{examplebox}[原稿例：递推关系直接制造裂项]
+  数列 $\{a_n\}$ 满足 $a_1=1$，
+  \[
+    a_{n+1}=a_n^2+a_n.
+  \]
+  求和
+  \[
+    \sum_{k=1}^{n}\frac1{a_k+1}.
+  \]
+
+  \textbf{解：}递推式可写成 $a_{n+1}=a_n(a_n+1)$，因此
+  \[
+    \frac1{a_n+1}
+    =\frac{a_n}{a_n(a_n+1)}
+    =\frac1{a_n}-\frac1{a_{n+1}}.
+  \]
+  连续相加后只留下首尾：
+  \[
+    \boxed{\sum_{k=1}^{n}\frac1{a_k+1}=1-\frac1{a_{n+1}}}.
+  \]
+  \textbf{关键转化：}题目没有给出 $a_n$ 的通项，也不需要先求通项；递推式已经提供了相邻两项之间的裂项接口。
+\end{examplebox}
+
+\section{递推数列的构造}
+
+递推式的目标不是一律“展开到第一项”，而是先识别不变的结构：差、比、平移后的比，或两个不动点之间的比例。
+
+\begin{corollarybox}[累加与累乘]
+  若 $a_{n+1}-a_n=f(n)$，则
+  \[
+    a_n=a_1+\sum_{k=1}^{n-1}f(k).
+  \]
+  若 $a_{n+1}/a_n=g(n)$ 且各分母非零，则
+  \[
+    a_n=a_1\prod_{k=1}^{n-1}g(k).
+  \]
+  前者寻找相邻差，后者寻找相邻比；连加或连乘时要同时检查起止下标。
+\end{corollarybox}
+
+\subsection{一阶线性递推：平移或除以指数项}
+
+\begin{lawbox}[常数型一阶递推]
+  对
+  \[
+    a_{n+1}=pa_n+c\qquad(p\ne1),
+  \]
+  取不动点 $L=c/(1-p)$，则
+  \[
+    a_{n+1}-L=p(a_n-L).
+  \]
+  因而 $\{a_n-L\}$ 是等比数列。所谓“配常数”，本质是把递推式的固定点移到原点。
+\end{lawbox}
+
+当非齐次项是 $n$ 的多项式时，可尝试构造 $a_n+An+B$ 或更高次多项式；当非齐次项是 $r^n$ 时，可尝试构造 $a_n+Ar^n$，也可直接除以合适的指数项。若 $r=p$ 出现“共振”，通常要把试探项提高为 $Anr^n$。
+
+\begin{examplebox}[原稿型：加入一次式构造等比数列]
+  已知 $a_1=2$，$a_{n+1}=3a_n+2n$。求通项公式。
+
+  \textbf{解：}设 $b_n=a_n+An+B$，希望 $b_{n+1}=3b_n$。比较
+  \begin{align*}
+    b_{n+1}&=3a_n+2n+A(n+1)+B,\\
+    3b_n&=3a_n+3An+3B,
+  \end{align*}
+  得
+  \[
+    2+A=3A,qquad A+B=3B,
+  \]
+  所以 $A=1$、$B=\tfrac12$。于是
+  \[
+    a_{n+1}+n+\frac32=3\left(a_n+n+\frac12\right),
+  \]
+  即 $\{a_n+n+\tfrac12\}$ 是首项 $7/2$、公比 $3$ 的等比数列。因此
+  \[
+    \boxed{a_n=\frac72\,3^{n-1}-n-\frac12}.
+  \]
+  \textbf{方法启示：}待定的一次式不是凭经验硬凑；把目标关系写出后比较 $n$ 的系数与常数项，就能系统确定。
+\end{examplebox}
+
+\subsection{分式递推：围绕不动点变换}
+
+\begin{lawbox}[分式递推的不动点法]
+  对 $a_{n+1}=f(a_n)$，先解 $f(x)=x$。若有两个不同不动点 $\alpha,\beta$，常可整理成
+  \[
+    \frac{a_{n+1}-\alpha}{a_{n+1}-\beta}
+      =q\frac{a_n-\alpha}{a_n-\beta},
+  \]
+  从而把原递推化成等比数列。若其中一个不动点使式子更简单，也可只取倒数 $1/(a_n-\alpha)$ 再平移。
+\end{lawbox}
+
+\begin{examplebox}[原稿例：分式递推的倒数平移]
+  已知 $a_1=2$，
+  \[
+    a_{n+1}=\frac{2a_n+2}{a_n+3}.
+  \]
+  求 $a_n$。
+
+  \textbf{解：}方程 $(2x+2)/(x+3)=x$ 的两个不动点为 $1,-2$。先围绕 $1$ 整理：
+  \[
+    a_{n+1}-1=\frac{a_n-1}{a_n+3}.
+  \]
+  取倒数，并令 $b_n=1/(a_n-1)$，则
+  \[
+    b_{n+1}=\frac{a_n+3}{a_n-1}=1+4b_n.
+  \]
+  再平移一次：
+  \[
+    b_{n+1}+\frac13=4\left(b_n+\frac13\right).
+  \]
+  因为 $b_1=1$，所以
+  \[
+    b_n+\frac13=\frac43\,4^{n-1}=\frac{4^n}{3}.
+  \]
+  故
+  \[
+    \boxed{a_n=1+\frac{3}{4^n-1}}.
+  \]
+  \textbf{方法启示：}第一次变换利用不动点消去常数，第二次平移把线性递推化为等比；两步分别解决不同的障碍。
+\end{examplebox}
+
+\begin{examplebox}[原稿例：自加权递推先比较相邻两式]
+  设 $a_1=1$，且对 $n\ge2$，
+  \[
+    a_n=a_1+\frac12a_2+\frac13a_3+\cdots+\frac1{n-1}a_{n-1}.
+  \]
+  求 $a_n$，并确定满足 $a_n>2007$ 的最小正整数 $n$。
+
+  \textbf{解：}把 $n$ 与 $n+1$ 对应的两式相减：
+  \[
+    a_{n+1}-a_n=\frac1n a_n,
+  \]
+  即
+  \[
+    \frac{a_{n+1}}{a_n}=\frac{n+1}{n}.
+  \]
+  又由原式知 $a_2=a_1=1$，连续相乘得
+  \[
+    \frac{a_n}{a_2}=\frac32\cdot\frac43\cdots\frac n{n-1}=\frac n2,
+  \]
+  所以 $a_1=1$，且 $n\ge2$ 时 $a_n=n/2$。因此 $a_n>2007$ 等价于 $n>4014$，最小的 $n$ 为
+  \[
+    \boxed{4015}.
+  \]
+  \textbf{方法启示：}含有逐步延长的和式时，先写相邻两个下标的等式并相减；长和式会只剩新添的一项。
+\end{examplebox}
+
+\subsection{二阶线性递推与特征根}
+
+\begin{lawbox}[二阶常系数递推]
+  对
+  \[
+    a_{n+2}=s a_{n+1}+t a_n,
+  \]
+  设法构造
+  \[
+    a_{n+1}+\lambda a_n=(s+\lambda)(a_n+\lambda a_{n-1}).
+  \]
+  比较系数得
+  \[
+    \lambda^2+s\lambda-t=0.
+  \]
+  这与设试探解 $a_n=r^n$ 得到的特征方程 $r^2-sr-t=0$ 等价（$r=s+\lambda$）。若有两个不同实根 $r_1,r_2$，则
+  \[
+    a_n=C_1r_1^{n-1}+C_2r_2^{n-1},
+  \]
+  常数由初值确定。
+\end{lawbox}
+
+\begin{examplebox}[原稿方法：同时构造两条一阶递推]
+  对递推关系
+  \[
+    a_n=2a_{n-1}+3a_{n-2}\qquad(n\ge3),
+  \]
+  说明如何降阶。
+
+  \textbf{解：}特征方程
+  \[
+    r^2-2r-3=0
+  \]
+  的根为 $3,-1$。不直接写结论，而分别把原递推整理为
+  \begin{align*}
+    a_n+a_{n-1}&=3(a_{n-1}+a_{n-2}),\\
+    a_n-3a_{n-1}&=-(a_{n-1}-3a_{n-2}).
+  \end{align*}
+  因此 $\{a_n+a_{n-1}\}$ 与 $\{a_n-3a_{n-1}\}$ 分别是公比为 $3$ 与 $-1$ 的等比数列。代入题目给定的两个初值后，两式联立即可求出 $a_n$。
+
+  \textbf{方法启示：}两个特征根对应两条独立的一阶关系。保留这一步构造，可以看清通项中两个指数项从何而来，而不是把特征根公式当作黑箱。
+\end{examplebox}
+
+\section{放缩与数列不等式}
+
+放缩的目的不是把每一项估得尽可能接近，而是把它改造成能求和、最好能相消的形式。先确定所需方向，再寻找相邻下标之间的差。
+
+\begin{corollarybox}[设计可相消放缩的步骤]
+  \begin{enumerate}
+    \item 先写清需要的是上界还是下界；
+    \item 猜测相邻差 $F(k+1)-F(k)$，使求和后只留下边界；
+    \item 检查不等号方向与适用的起始下标；
+    \item 必要时把前一两项单独处理，再对尾项统一放缩。
+  \end{enumerate}
+\end{corollarybox}
+
+\begin{examplebox}[原稿例：用裂项证明平方倒数和有界]
+  证明
+  \[
+    1+\frac1{2^2}+\frac1{3^2}+\cdots+\frac1{n^2}<2
+    \qquad(n\ge2).
+  \]
+
+  \textbf{证明：}对 $k\ge2$，有 $k^2>k(k-1)$，故
+  \[
+    \frac1{k^2}<\frac1{k(k-1)}=\frac1{k-1}-\frac1k.
+  \]
+  所以
+  \[
+    1+\sum_{k=2}^{n}\frac1{k^2}
+    <1+\sum_{k=2}^{n}\left(\frac1{k-1}-\frac1k\right)
+    =2-\frac1n<2.
+  \]
+  \textbf{方法启示：}逐项上界 $1/[k(k-1)]$ 虽不精细，却能完全相消；整体结构比单项误差更重要。
+\end{examplebox}
+
+\begin{examplebox}[原稿例：平方和尾项的定向放缩]
+  证明
+  \[
+    \frac1{2^2}+\frac1{3^2}+\cdots+\frac1{n^2}<\frac34
+    \qquad(n\ge2).
+  \]
+
+  \textbf{证明：}首项单独保留。对 $k\ge3$，因为 $k^2>k(k-1)$，
+  \[
+    \frac1{k^2}<\frac1{k(k-1)}=\frac1{k-1}-\frac1k.
+  \]
+  因此
+  \[
+    \sum_{k=2}^{n}\frac1{k^2}
+    <\frac14+\sum_{k=3}^{n}\left(\frac1{k-1}-\frac1k\right)
+    =\frac34-\frac1n<\frac34.
+  \]
+  \textbf{辨析：}若从 $k=2$ 就统一采用同一上界，只能得到较弱的常数。把少数边界项单独处理，常能显著改善整体估计。
+\end{examplebox}
+
+\begin{examplebox}[原稿例：根式项的两种相邻放缩]
+  设
+  \[
+    T_n=1+\frac1{\sqrt2}+\frac1{\sqrt3}+\cdots+\frac1{\sqrt n}.
+  \]
+  证明
+  \[
+    2(\sqrt{n+1}-1)<T_n<2\sqrt n.
+  \]
+
+  \textbf{证明：}对 $k\ge1$，有
+  \[
+    \frac1{\sqrt k}
+      =\frac2{2\sqrt k}
+      >\frac2{\sqrt{k+1}+\sqrt k}
+      =2(\sqrt{k+1}-\sqrt k).
+  \]
+  求和即得 $T_n>2(\sqrt{n+1}-1)$。
+
+  对 $k\ge2$，又有
+  \[
+    \frac1{\sqrt k}
+      <\frac2{\sqrt k+\sqrt{k-1}}
+      =2(\sqrt k-\sqrt{k-1}).
+  \]
+  把首项 $1$ 单独保留并对其余项求和：
+  \[
+    T_n<1+2(\sqrt n-1)=2\sqrt n-1<2\sqrt n.
+  \]
+  \textbf{方法启示：}同一个根式项，上界和下界要分别选择前后相邻的根式差；放缩方向改变，配对的下标也随之改变。
+\end{examplebox}
