@@ -1,13 +1,13 @@
-# 中学数学与物理笔记
+# 高中数学笔记
 
-把纸质中学课程笔记逐步整理成结构清晰、可维护、可打印的中文 LaTeX 教材。
+把纸质高中数学笔记逐步整理成结构清晰、可维护、可打印的中文 LaTeX 教材。
 
-本项目借鉴 [Language Science Press 420](https://github.com/langsci/420/tree/main) 的工程组织思路：主文件只负责装配；元数据、宏命令与包配置彼此独立；正文按章节拆分；图片和参考文献集中管理。这里使用轻量的 `ctexbook` 自定义类，以便中文数学与物理内容可以直接用 XeLaTeX 编译。
+本项目借鉴 [Language Science Press 420](https://github.com/langsci/420/tree/main) 的工程组织思路：主文件只负责装配；元数据、宏命令与包配置彼此独立；正文按章节拆分；图片和参考文献集中管理。这里使用轻量的 `ctexbook` 自定义类，以便中文数学内容可以直接用 XeLaTeX 编译。
 
 ## 当前状态
 
-- 已建立数学、物理两部分的章节骨架。
-- 已抽样登记 `数学/数学1.pdf` 与 `物理/物理1.pdf`。
+- 已建立数学教材的章节骨架。
+- 已抽样登记 `数学/数学1.pdf`。
 - 原始扫描 PDF 保留在仓库外，不会被复制或提交。
 - 示例章节用于确认结构与排版，尚不是完整誊写稿。
 
@@ -33,9 +33,7 @@ make watch
 ├── schoolbook.cls             # 中文教材版式
 ├── config/                    # 元数据、宏命令、包配置
 ├── frontmatter/               # 前言等前置内容
-├── subjects/
-│   ├── mathematics/           # 数学章节与插图
-│   └── physics/               # 物理章节与插图
+├── subjects/mathematics/      # 数学章节与插图
 ├── references/                # BibLaTeX 文献库
 ├── sources/                   # 原始笔记索引，不存扫描件
 ├── docs/                      # 工作流与写作约定
