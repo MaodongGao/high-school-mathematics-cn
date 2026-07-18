@@ -142,6 +142,10 @@
   \textbf{性质：}若 $a\parallel\alpha$，过 $a$ 的平面 $\beta$ 与 $\alpha$ 交于 $b$，则 $a\parallel b$。
 \end{lawbox}
 
+\textbf{为什么只需找一条平行线？} 过 $a,b$ 作平面 $\beta$。若 $a$ 还与 $\alpha$ 相交，交点必须同时落在
+$\alpha\cap\beta=b$ 上，这与 $a\parallel b$ 矛盾。因此 $a$ 不碰 $\alpha$。反过来，用过 $a$ 的平面去截
+$\alpha$，截线 $b$ 与 $a$ 共面且不能相交，所以只能平行。
+
 判定时是在平面内“找平行线”；性质则是用过已知直线的辅助平面“截出平行线”。两者方向相反，构成最常用的线面转化：
 \[
   \text{线面平行}\ \Longleftrightarrow\ \text{线线平行（配合辅助平面）}.
@@ -156,6 +160,8 @@
 
   等价地，若 $a,b\subset\alpha$，$a',b'\subset\beta$，$a\cap b=O$，$a'\cap b'=O'$，且 $a\parallel a'$、$b\parallel b'$，则 $\alpha\parallel\beta$。
 \end{lawbox}
+
+这里必须是\textbf{两条相交直线}：一条线只锁定一个方向，平面仍可绕它“转动”；两个相交方向才能锁定整个平面的方向。
 
 \begin{lawbox}[面面平行的性质]
   \begin{enumerate}
@@ -197,6 +203,8 @@
   若 $m,n\subset\alpha$，$m\cap n=O$，且 $l\perp m$、$l\perp n$，则 $l\perp\alpha$。
 \end{lawbox}
 
+\textbf{理解：}平面内两条相交直线给出两个独立方向。$l$ 同时垂直这两个方向，就垂直于平面内由它们确定的任意方向，因此垂直于整个平面。
+
 “两条相交直线”不可省略：只垂直于平面内一条直线，不能推出垂直于该平面。常用推论为
 \[
   l\perp\alpha,\ m\parallel l\Rightarrow m\perp\alpha;\qquad
@@ -218,6 +226,10 @@
   \]
   即：平面内一条直线垂直于斜线的射影，当且仅当它垂直于斜线本身。
 \end{lawbox}
+
+\textbf{证明骨架：}因 $PO\perp\alpha$，故 $a\perp PO$。若再有 $a\perp OA$，则 $a$ 垂直于平面
+$POA$ 内两条相交直线 $PO,OA$，从而 $a\perp$ 平面 $POA$，特别地 $a\perp PA$。逆定理同理把
+$PA$ 与 $PO$ 作为两条相交直线。
 
 \begin{center}
 \begin{tikzpicture}[scale=.9]
@@ -275,12 +287,28 @@
 
 \subsection{空间直线的方向余弦}
 
-若直线与三条两两垂直的坐标轴所成角分别为 $\alpha,\beta,\gamma$，则方向余弦满足
+设直线的一个方向向量为 $\vec v=(x,y,z)$。它在三个坐标轴上的投影长度分别为 $x,y,z$，所以直线与
+$x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
+\[
+  \cos\alpha=\frac{x}{\sqrt{x^2+y^2+z^2}},\qquad
+  \cos\beta =\frac{y}{\sqrt{x^2+y^2+z^2}},\qquad
+  \cos\gamma=\frac{z}{\sqrt{x^2+y^2+z^2}}.
+\]
+也就是说，方向余弦就是把方向向量化为单位向量后的三个坐标。由单位向量长度为 $1$，立即得到
 \[
   \cos^2\alpha+\cos^2\beta+\cos^2\gamma=1,
   \qquad
   \sin^2\alpha+\sin^2\beta+\sin^2\gamma=2.
 \]
+第二式只是把 $\sin^2\theta=1-\cos^2\theta$ 对三个角相加，并不是另一条需要死记的公式。
+
+\begin{examplebox}[方向向量读出方向余弦]
+  若直线方向向量为 $(1,2,2)$，其长度为 $3$，故
+  \[
+    (\cos\alpha,\cos\beta,\cos\gamma)=\left(\frac13,\frac23,\frac23\right).
+  \]
+  三个余弦的平方和为 $1$，可顺手用于验算。若题目只问直线与坐标轴的锐角，取相应余弦的绝对值。
+\end{examplebox}
 
 \section{多面体}
 
@@ -324,10 +352,12 @@
 \[
   S_{\text{正棱锥侧}}=\frac12pl.
 \]
+这是把所有侧面三角形展开后相加：每个三角形面积为“$\frac12\times$ 底边 $\times l$”，所有底边之和正好是底面周长 $p$。
 正棱台上下底周长为 $p,p'$、斜高为 $l$，则
 \[
   S_{\text{正棱台侧}}=\frac12(p+p')l.
 \]
+同理，每个侧面是梯形；把所有梯形面积相加，上、下底边之和分别累积成 $p'$ 与 $p$。
 
 \begin{examplebox}[原稿型：正棱锥侧面积]
   正四棱锥底面边长为 $a$，斜高为 $l$，求侧面积；若高为 $h$，求体积。
@@ -377,6 +407,8 @@
 
 其中 $S$ 为底面积，$p$ 为底面周长，$h$ 为高，$l$ 为母线或斜高。
 
+表面积公式都可以从展开图重新得到，不必孤立记忆：圆柱侧面展开为长 $2\pi r$、宽 $l$ 的矩形；圆锥侧面展开为半径 $l$ 的扇形，弧长等于底面周长 $2\pi r$；圆台可看成“大圆锥侧面减小圆锥侧面”。
+
 \subsection{祖氏原理与统一体积公式}
 
 \begin{lawbox}[祖氏原理（等幂等积）]
@@ -391,6 +423,8 @@
   \qquad
   V_{\text{台体}}=\frac h3\left(S+\sqrt{SS'}+S'\right).
 \]
+
+三条公式的来源不同但脉络相同：柱体各等高截面都与底面等积，所以体积是 $Sh$；一个三棱柱可以分成三个等体积三棱锥，这给出锥体前的系数 $1/3$，再由祖氏原理推广到同底等高的锥体；台体则补成大锥体，再减去顶部小锥体。先辨认“柱、锥、台”，再使用对应系数。
 
 台体公式来自补成大锥体。若小锥与大锥相似，底面积分别为 $S',S$，对应高为 $x,x+h$，则
 \[
@@ -440,6 +474,12 @@
   \qquad
   V_{\text{球}}=\frac43\pi R^3.
 \]
+
+记忆时不要把两式割裂：球的表面积等于半径为 $R$ 的大圆面积的 $4$ 倍；球的体积还可写成
+\[
+  V_{\text{球}}=\frac R3S_{\text{球}}.
+\]
+后一个关系可理解为把球面分成许多很小的面片，并把每个面片与球心连成高近似为 $R$ 的小棱锥；所有小棱锥体积相加即为球体积。
 
 \subsection{内切球与外接球}
 
