@@ -1,2 +1,2 @@
 subject,source_id,relative_path,status,target,notes
-数学,math-01,数学/数学1.pdf,complete,subjects/mathematics/chapters/01-space-geometry.tex,共23页；已逐页整理，例题均配图并提取定理、推论与速查解法，已完成编译核对
+数学,math-01,数学/数学1.pdf,complete,subjects/mathematics/chapters/01-space-geometry.tex,共23页；已逐页整理，例题均配图并提取定理、推论与有迁移价值的解法，已完成编译核对
