@@ -56,20 +56,38 @@
   \end{enumerate}
 \end{lawbox}
 
-第二条立即给出三种常用的“确定平面”方式：
+\begin{corollarybox}[确定平面的三种方式]
+  一条直线和线外一点、两条相交直线、两条平行直线，都确定唯一平面。
+  \begin{center}
+  \begin{tikzpicture}[scale=.58]
+    \draw[sg edge] (0,0)--(2.5,0); \node[sg mark,label={[sg label]above:$P$}] at (1.25,1) {};
+    \node[font=\small] at (1.25,-.5) {线 $+$ 线外点};
+    \draw[sg edge] (3.7,0)--(6.2,1.25) (4.15,1.2)--(6.1,-.15);
+    \node[font=\small] at (5,-.5) {两相交线};
+    \draw[sg edge] (7.6,.15)--(10.1,.15) (7.9,1.15)--(10.4,1.15);
+    \node[font=\small] at (9,-.5) {两平行线};
+  \end{tikzpicture}
+  \end{center}
+\end{corollarybox}
 
-\[
-  \boxed{\text{一条直线和线外一点}}
-  \qquad
-  \boxed{\text{两条相交直线}}
-  \qquad
-  \boxed{\text{两条平行直线}}.
-\]
-
-证明一条直线在平面内，通常只证直线上两点在该平面内；证明若干点共面，通常先用上述三种方式确定一个平面，再逐点验证。证明空间点共线，常把这些点同时放入两个平面，利用“两平面的公共点都在交线”这一事实。
+\begin{corollarybox}[点线面证明入口]
+  证线在面内：在线上找两点；证若干点共面：先确定一个平面，再逐点验证；证空间点共线：把各点同时放入两个相交平面，公共点必在交线上。
+\end{corollarybox}
 
 \begin{examplebox}[原稿例：交线法证明共线]
   在四面体 $ABCD$ 中，两条分别位于面 $ABD$、面 $BCD$ 内的直线交于点 $P$。若已知 $P$ 同时在这两个面内，证明 $P,B,D$ 共线。
+
+  \begin{center}
+  \begin{tikzpicture}[scale=.62]
+    \coordinate (B) at (0,0); \coordinate (D) at (4.8,.6); \coordinate (A) at (1.8,2.4); \coordinate (C) at (2.7,-1.55); \coordinate (P) at (3,.375);
+    \path[draw=BookBlue,fill=BookBlueLight] (A)--(B)--(D)--cycle;
+    \path[draw=BookGold,fill=BookGold!10,fill opacity=.75] (C)--(B)--(D)--cycle;
+    \draw[very thick,BookGold] (B)--(D);
+    \node[sg mark] at (P) {};
+    \foreach \q/\pos in {A/above,B/left,C/below,D/right,P/above}\node[sg label,\pos] at (\q) {$\q$};
+    \node[font=\small,align=left] at (7,.5) {$\text{面 }ABD\cap\text{面 }BCD=BD$\\$P$ 同属两面 $\Rightarrow P\in BD$};
+  \end{tikzpicture}
+  \end{center}
 
   \textbf{最短解：}$P\in\text{平面 }ABD$ 且 $P\in\text{平面 }BCD$；而两平面的交线为 $BD$，故 $P\in BD$。因此 $P,B,D$ 共线。
 
@@ -89,11 +107,22 @@
 
 证明只需反证：若 $a,b$ 共面于 $\beta$，则 $A\in a\subset\beta$ 且 $b\subset\alpha\cap\beta$；由于 $A\notin b$，两平面的交线不能同时容纳 $A$ 与 $b$，矛盾。
 
+\begin{corollarybox}[空间平行线的传递性]
+  若 $a\parallel b$、$b\parallel c$，则 $a\parallel c$。三条线可以不在同一平面内；只要都与同一方向平行，任取其中两条都能确定一个平面并在该平面内平行。
+\end{corollarybox}
+
 \subsection{异面直线所成的角与公垂线}
 
-过空间任一点 $O$ 分别作 $a'\parallel a$、$b'\parallel b$，相交直线 $a',b'$ 所成的锐角或直角称为异面直线 $a,b$ 所成的角。平移所选点不改变该角，这是等角定理的直接应用：若两个角的两边分别平行且方向相同，则两角相等。
+过空间任一点 $O$ 分别作 $a'\parallel a$、$b'\parallel b$，相交直线 $a',b'$ 所成的锐角或直角称为异面直线 $a,b$ 所成的角。
+
+\begin{corollarybox}[空间等角定理]
+  若两个角的两边分别平行且方向相同，则两角相等；若一组方向相反，则两角互补。因此平移所选点不会改变异面直线所成的锐角或直角。
+\end{corollarybox}
 
 若所成角为 $90^\circ$，记作 $a\perp b$；这一定义同时适用于相交直线和异面直线。两条异面直线有且只有一条公垂线段，其长度称为两异面直线间的距离。
+
+\begin{examplebox}[原稿型：正方体中的异面线夹角]
+  正方体 $ABCD-A_1B_1C_1D_1$ 的棱长为 $a$，求异面直线 $A_1B$ 与 $B_1C$ 所成的角。
 
 \begin{center}
 \begin{tikzpicture}[scale=.9]
@@ -117,9 +146,6 @@
 \end{tikzpicture}
 \sgcaption{异面线所成角：平移其中一条，使两条方向线相交。}
 \end{center}
-
-\begin{examplebox}[原稿型：正方体中的异面线夹角]
-  正方体 $ABCD-A_1B_1C_1D_1$ 的棱长为 $a$，求异面直线 $A_1B$ 与 $B_1C$ 所成的角。
 
   \textbf{最短解：}$B_1C\parallel A_1D$，故所求角为 $\angle BA_1D$。取
   $\overrightarrow{A_1B}=(a,0,-a)$、$\overrightarrow{B_1C}=(0,a,-a)$，则
@@ -146,10 +172,12 @@
 $\alpha\cap\beta=b$ 上，这与 $a\parallel b$ 矛盾。因此 $a$ 不碰 $\alpha$。反过来，用过 $a$ 的平面去截
 $\alpha$，截线 $b$ 与 $a$ 共面且不能相交，所以只能平行。
 
-判定时是在平面内“找平行线”；性质则是用过已知直线的辅助平面“截出平行线”。两者方向相反，构成最常用的线面转化：
-\[
-  \text{线面平行}\ \Longleftrightarrow\ \text{线线平行（配合辅助平面）}.
-\]
+\begin{corollarybox}[线面平行与线线平行互化]
+  判定时在平面内“找平行线”；性质则用过已知直线的辅助平面“截出平行线”：
+  \[
+    \text{线面平行}\ \Longleftrightarrow\ \text{线线平行（配合辅助平面）}.
+  \]
+\end{corollarybox}
 
 \subsection{平面与平面平行}
 
@@ -205,17 +233,43 @@ $\alpha$，截线 $b$ 与 $a$ 共面且不能相交，所以只能平行。
 
 \textbf{理解：}平面内两条相交直线给出两个独立方向。$l$ 同时垂直这两个方向，就垂直于平面内由它们确定的任意方向，因此垂直于整个平面。
 
-“两条相交直线”不可省略：只垂直于平面内一条直线，不能推出垂直于该平面。常用推论为
-\[
-  l\perp\alpha,\ m\parallel l\Rightarrow m\perp\alpha;\qquad
-  l\perp\alpha,\ m\perp\alpha\Rightarrow l\parallel m;\qquad
-  l\perp\alpha,\ l\perp\beta\Rightarrow\alpha\parallel\beta.
-\]
-过空间一点有且只有一条直线垂直于已知平面；过空间一点有且只有一个平面垂直于已知直线。
+“两条相交直线”不可省略：只垂直于平面内一条直线，不能推出垂直于该平面。
+
+\begin{corollarybox}[垂直关系的平行传递]
+  \[
+    l\perp\alpha,\ m\parallel l\Rightarrow m\perp\alpha;\qquad
+    l\perp\alpha,\ m\perp\alpha\Rightarrow l\parallel m;
+  \]
+  \[
+    l\perp\alpha,\ l\perp\beta\Rightarrow\alpha\parallel\beta.
+  \]
+  \begin{center}
+  \begin{tikzpicture}[scale=.55]
+    \path[sg plane] (0,0)--(3.4,0)--(4.1,1)--(.7,1)--cycle;
+    \draw[very thick,BookBlue] (1.4,.4)--(1.4,2.7) node[above,sg label] {$l$};
+    \draw[very thick,BookGold] (2.8,.7)--(2.8,3) node[above,sg label] {$m$};
+    \draw[sg aux] (1.4,.4)--(2.8,.7);
+    \node[sg label] at (3.4,.8) {$\alpha$};
+    \node[font=\small,align=left] at (6.4,1.5) {同垂直 $\Rightarrow$ 平行；\\平行线继承对平面的垂直。};
+  \end{tikzpicture}
+  \end{center}
+\end{corollarybox}
+
+\begin{corollarybox}[垂线与垂面的唯一性]
+  过空间一点有且只有一条直线垂直于已知平面；过空间一点有且只有一个平面垂直于已知直线。
+\end{corollarybox}
 
 \subsection{斜线、射影与三垂线定理}
 
 设 $P\notin\alpha$，$PO\perp\alpha$。$PO$ 是垂线段，$O$ 是 $P$ 在 $\alpha$ 上的射影；对 $A\in\alpha$、$A\ne O$，$PA$ 是斜线段，$OA$ 是 $PA$ 在 $\alpha$ 内的射影。
+
+\begin{corollarybox}[斜线段与射影的大小关系]
+  从同一点 $P$ 向平面 $\alpha$ 引两条斜线 $PA,PB$，因
+  \[
+    PA^2=PO^2+OA^2,\qquad PB^2=PO^2+OB^2,
+  \]
+  所以 $PA=PB\Longleftrightarrow OA=OB$，且 $PA>PB\Longleftrightarrow OA>OB$。比较斜线长短，可转化为比较平面内射影。
+\end{corollarybox}
 
 \begin{lawbox}[三垂线定理及逆定理]
   对平面内过 $A$ 的直线 $a$：
@@ -250,6 +304,21 @@ $PA$ 与 $PO$ 作为两条相交直线。
 \begin{examplebox}[原稿型：正方体的线面角]
   正方体 $ABCD-A_1B_1C_1D_1$ 棱长为 $a$，求体对角线 $AC_1$ 与底面 $ABCD$ 所成角 $\theta$。
 
+  \begin{center}
+  \begin{tikzpicture}[scale=.52]
+    \coordinate (A) at (0,0); \coordinate (B) at (4,0); \coordinate (D) at (1.2,1.2); \coordinate (C) at (5.2,1.2);
+    \coordinate (A1) at (0,3.2); \coordinate (B1) at (4,3.2); \coordinate (D1) at (1.2,4.4); \coordinate (C1) at (5.2,4.4);
+    \draw[sg edge] (A)--(B)--(C)--(C1)--(B1)--(A1)--cycle (A1)--(D1)--(C1) (B1)--(C1);
+    \draw[sg hidden] (A)--(D)--(C) (D)--(D1)--(C1);
+    \draw[very thick,BookGold] (A)--(C1);
+    \draw[very thick,BookBlue] (A)--(C);
+    \draw[sg aux] (C)--(C1);
+    \pic[draw=BookGold,angle radius=8mm,"$\theta$" {font=\scriptsize}] {angle=C--A--C1};
+    \foreach \q/\pos in {A/below left,C/right,C1/above}\node[sg label,\pos] at (\q) {$\q$};
+    \node[font=\small,align=left] at (8.2,2.2) {$AC$ 是 $AC_1$ 的射影\\$CC_1\perp$ 底面\\$\theta=\angle C_1AC$};
+  \end{tikzpicture}
+  \end{center}
+
   \textbf{最短解：}$C_1C\perp$ 底面，$AC$ 是 $AC_1$ 在底面内的射影。在直角三角形 $ACC_1$ 中，
   \[
     AC=a\sqrt2,\quad AC_1=a\sqrt3,
@@ -257,6 +326,22 @@ $PA$ 与 $PO$ 作为两条相交直线。
   \]
   \textbf{速查：}求线面角，先找斜线在平面内的射影，再进直角三角形。
 \end{examplebox}
+
+\begin{corollarybox}[空间等距点的射影]
+  若 $P\notin\alpha$，$PO\perp\alpha$，且 $A,B,C\in\alpha$、$PA=PB=PC$，则由斜线与射影关系
+  $OA=OB=OC$，故 $O$ 是 $\triangle ABC$ 的外心。反之，若 $O$ 是外心，则 $PA=PB=PC$。
+  \begin{center}
+  \begin{tikzpicture}[scale=.55]
+    \path[sg plane] (0,0)--(5.2,0)--(6.1,1.55)--(.9,1.55)--cycle;
+    \coordinate (O) at (2.8,.72); \coordinate (P) at (2.8,3.35); \coordinate (A) at (1.2,.35); \coordinate (B) at (4.55,.42); \coordinate (C) at (3.2,1.35);
+    \draw[sg edge] (A)--(B)--(C)--cycle;
+    \draw[very thick,BookGold] (P)--(A) (P)--(B) (P)--(C);
+    \draw[sg aux] (P)--(O) (O)--(A) (O)--(B) (O)--(C);
+    \foreach \q/\pos in {P/above,O/below,A/left,B/right,C/above}\node[sg label,\pos] at (\q) {$\q$};
+    \node[font=\small,align=left] at (8.1,1.7) {$PA=PB=PC$\\$\Downarrow$\\$OA=OB=OC$\\$O$ 为底面外心};
+  \end{tikzpicture}
+  \end{center}
+\end{corollarybox}
 
 \subsection{二面角与面面垂直}
 
@@ -294,16 +379,29 @@ $x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
   \cos\beta =\frac{y}{\sqrt{x^2+y^2+z^2}},\qquad
   \cos\gamma=\frac{z}{\sqrt{x^2+y^2+z^2}}.
 \]
-也就是说，方向余弦就是把方向向量化为单位向量后的三个坐标。由单位向量长度为 $1$，立即得到
-\[
-  \cos^2\alpha+\cos^2\beta+\cos^2\gamma=1,
-  \qquad
-  \sin^2\alpha+\sin^2\beta+\sin^2\gamma=2.
-\]
-第二式只是把 $\sin^2\theta=1-\cos^2\theta$ 对三个角相加，并不是另一条需要死记的公式。
+\begin{corollarybox}[方向角的平方和]
+  方向余弦就是把方向向量化为单位向量后的三个坐标。由单位向量长度为 $1$，
+  \[
+    \cos^2\alpha+\cos^2\beta+\cos^2\gamma=1,
+    \qquad
+    \sin^2\alpha+\sin^2\beta+\sin^2\gamma=2.
+  \]
+  第二式由 $\sin^2\theta=1-\cos^2\theta$ 对三个角相加得到，不必另记。
+\end{corollarybox}
 
 \begin{examplebox}[方向向量读出方向余弦]
   若直线方向向量为 $(1,2,2)$，其长度为 $3$，故
+  \begin{center}
+  \begin{tikzpicture}[scale=.62]
+    \coordinate (O) at (0,0); \coordinate (X) at (3.4,0); \coordinate (Y) at (-1.2,-.8); \coordinate (Z) at (0,3.1); \coordinate (P) at (2.35,2.25);
+    \draw[sg edge,-{Latex[length=2mm]}] (O)--(X) node[right,sg label] {$x$};
+    \draw[sg edge,-{Latex[length=2mm]}] (O)--(Y) node[left,sg label] {$y$};
+    \draw[sg edge,-{Latex[length=2mm]}] (O)--(Z) node[above,sg label] {$z$};
+    \draw[very thick,BookGold,-{Latex[length=2mm]}] (O)--(P) node[above right,sg label] {$\vec v$};
+    \draw[sg aux] (P)--(2.35,0) (P)--(0,2.25);
+    \node[font=\small,align=left] at (6.1,1.35) {单位化：\\$(1,2,2)/3=(1/3,2/3,2/3)$};
+  \end{tikzpicture}
+  \end{center}
   \[
     (\cos\alpha,\cos\beta,\cos\gamma)=\left(\frac13,\frac23,\frac23\right).
   \]
@@ -348,19 +446,34 @@ $x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
 \sgcaption{先识别“两个平行底面 / 一个公共顶点 / 平行截去尖端”，再选公式。}
 \end{center}
 
-正棱锥的侧棱相等，各侧面是全等的等腰三角形；侧面等腰三角形底边上的高称为斜高。设底面周长为 $p$、斜高为 $l$，则
-\[
-  S_{\text{正棱锥侧}}=\frac12pl.
-\]
-这是把所有侧面三角形展开后相加：每个三角形面积为“$\frac12\times$ 底边 $\times l$”，所有底边之和正好是底面周长 $p$。
-正棱台上下底周长为 $p,p'$、斜高为 $l$，则
-\[
-  S_{\text{正棱台侧}}=\frac12(p+p')l.
-\]
-同理，每个侧面是梯形；把所有梯形面积相加，上、下底边之和分别累积成 $p'$ 与 $p$。
+\begin{corollarybox}[正棱锥与正棱台的侧面]
+  正棱锥的侧棱相等，各侧面是全等的等腰三角形，各侧面与底面所成的二面角也相等；侧面底边上的高称为斜高 $l$。设底面周长为 $p$，则
+  \[
+    S_{\text{正棱锥侧}}=\frac12pl.
+  \]
+  正棱台各侧面是全等的等腰梯形；若上、下底周长为 $p',p$，则
+  \[
+    S_{\text{正棱台侧}}=\frac12(p+p')l.
+  \]
+  两式都来自逐个侧面相加：三角形的底边总和为 $p$，梯形的两组底边总和分别为 $p,p'$。
+\end{corollarybox}
 
 \begin{examplebox}[原稿型：正棱锥侧面积]
   正四棱锥底面边长为 $a$，斜高为 $l$，求侧面积；若高为 $h$，求体积。
+
+  \begin{center}
+  \begin{tikzpicture}[scale=.62]
+    \coordinate (A) at (0,0); \coordinate (B) at (4,0); \coordinate (C) at (5.2,1.2); \coordinate (D) at (1.2,1.2);
+    \coordinate (O) at (2.6,.6); \coordinate (M) at (2,0); \coordinate (S) at (2.6,3.8);
+    \draw[sg edge] (A)--(B)--(C) (A)--(S)--(B) (S)--(C);
+    \draw[sg hidden] (C)--(D)--(A) (D)--(S);
+    \draw[very thick,BookBlue] (S)--(O) node[midway,left,sg label] {$h$};
+    \draw[very thick,BookGold] (S)--(M) node[midway,left,sg label] {$l$};
+    \draw[sg aux] (O)--(M);
+    \node[sg label,below] at (M) {$M$}; \node[sg label,right] at (O) {$O$};
+    \node[font=\small,align=left] at (7.5,1.8) {$SM=l$：侧面斜高\\$SO=h$：棱锥体高\\二者不能混用};
+  \end{tikzpicture}
+  \end{center}
 
   \textbf{最短解：}四个侧面是全等三角形，底面周长 $p=4a$，故
   \[
@@ -407,7 +520,23 @@ $x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
 
 其中 $S$ 为底面积，$p$ 为底面周长，$h$ 为高，$l$ 为母线或斜高。
 
-表面积公式都可以从展开图重新得到，不必孤立记忆：圆柱侧面展开为长 $2\pi r$、宽 $l$ 的矩形；圆锥侧面展开为半径 $l$ 的扇形，弧长等于底面周长 $2\pi r$；圆台可看成“大圆锥侧面减小圆锥侧面”。
+\begin{corollarybox}[旋转体侧面积来自展开图]
+  圆柱侧面展开为长 $2\pi r$、宽 $l$ 的矩形；圆锥侧面展开为半径 $l$ 的扇形，弧长等于底面周长 $2\pi r$；圆台可看成“大圆锥侧面减小圆锥侧面”。
+  \begin{center}
+  \begin{tikzpicture}[scale=.54]
+    \draw[sg edge] (0,0) rectangle (3.3,1.55);
+    \node[sg label] at (1.65,-.35) {$2\pi r$}; \node[sg label,rotate=90] at (-.3,.78) {$l$};
+    \draw[sg aux,-{Latex[length=2mm]}] (3.7,.78)--(4.45,.78);
+    \draw[sg edge,fill=BookBlueLight] (6.2,0) -- ++(135:2.15) arc (135:405:2.15) -- cycle;
+    \node[sg label] at (6.2,1.15) {$l$};
+    \draw[sg aux,-{Latex[length=2mm]}] (8.7,.78)--(9.45,.78);
+    \draw[sg edge,fill=BookGold!10] (11.1,0) -- ++(140:2.25) arc (140:400:2.25) -- cycle;
+    \draw[white,line width=7pt] (11.1,0) -- ++(140:.95) arc (140:400:.95) -- cycle;
+    \draw[sg edge] (11.1,0) -- ++(140:.95) arc (140:400:.95) -- cycle;
+    \node[font=\small] at (1.65,2.15) {圆柱：矩形}; \node[font=\small] at (6.2,2.55) {圆锥：扇形}; \node[font=\small] at (11.1,2.55) {圆台：扇环};
+  \end{tikzpicture}
+  \end{center}
+\end{corollarybox}
 
 \subsection{祖氏原理与统一体积公式}
 
@@ -415,14 +544,16 @@ $x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
   夹在两个平行平面之间的两个几何体，若在任意等高处的截面面积都相等，则两几何体体积相等。
 \end{lawbox}
 
-它把柱体与柱体、锥体与锥体的体积统一起来：
-\[
-  V_{\text{柱体}}=Sh,
-  \qquad
-  V_{\text{锥体}}=\frac13Sh,
-  \qquad
-  V_{\text{台体}}=\frac h3\left(S+\sqrt{SS'}+S'\right).
-\]
+\begin{corollarybox}[柱、锥、台的统一体积公式]
+  \[
+    V_{\text{柱体}}=Sh,
+    \qquad
+    V_{\text{锥体}}=\frac13Sh,
+    \qquad
+    V_{\text{台体}}=\frac h3\left(S+\sqrt{SS'}+S'\right).
+  \]
+  $S,S'$ 是上、下底面积；台体退化为柱体时 $S=S'$，退化为锥体时 $S'=0$，公式会自动回到前两式，可用于验算。
+\end{corollarybox}
 
 三条公式的来源不同但脉络相同：柱体各等高截面都与底面等积，所以体积是 $Sh$；一个三棱柱可以分成三个等体积三棱锥，这给出锥体前的系数 $1/3$，再由祖氏原理推广到同底等高的锥体；台体则补成大锥体，再减去顶部小锥体。先辨认“柱、锥、台”，再使用对应系数。
 
@@ -430,10 +561,26 @@ $x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
 \[
   \frac{x}{x+h}=\sqrt{\frac{S'}S};
 \]
-用“大锥体积减小锥体积”消去 $x$ 即得台体公式。体积题的基本路线只有三类：直接套公式、等体积转化、分割与补形。
+用“大锥体积减小锥体积”消去 $x$ 即得台体公式。
+
+\begin{corollarybox}[体积题的三条路线]
+  直接套公式；换底或祖氏原理作等体积转化；把复杂几何体分割、补形为熟悉几何体。遇到空间高难求时，优先尝试“换底”。
+\end{corollarybox}
 
 \begin{examplebox}[原稿方法：四面体换底]
   四面体体积既可把 $\triangle ABC$ 作为底，也可把 $\triangle PAB$ 作为底：
+  \begin{center}
+  \begin{tikzpicture}[scale=.62]
+    \coordinate (A) at (0,0); \coordinate (B) at (4.4,0); \coordinate (C) at (1.35,1.25); \coordinate (P) at (2.7,3.6);
+    \draw[sg edge] (A)--(B)--(C)--cycle (A)--(P)--(B) (P)--(C);
+    \fill[BookBlueLight] (A)--(B)--(C)--cycle;
+    \draw[very thick,BookBlue] (A)--(B)--(C)--cycle;
+    \fill[BookGold!16] (P)--(A)--(B)--cycle;
+    \draw[very thick,BookGold] (P)--(A)--(B)--cycle;
+    \foreach \q/\pos in {A/left,B/right,C/left,P/above}\node[sg label,\pos] at (\q) {$\q$};
+    \node[font=\small,align=left] at (7.4,2) {同一个四面体：\\底面可选 $\triangle ABC$\\也可选 $\triangle PAB$};
+  \end{tikzpicture}
+  \end{center}
   \[
     V_{P-ABC}=\frac13S_{ABC}\,d(P,ABC)
     =\frac13S_{PAB}\,d(C,PAB).
@@ -445,10 +592,15 @@ $x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
 
 半圆绕直径旋转所得的几何体是球；半圆弧旋转所得曲面是球面。球心记为 $O$，半径为 $R$，直径为 $2R$。
 
-球面被任一平面截得的截线是圆。若球心到截面的距离为 $d$、截面圆半径为 $r$，则
-\[
-  r^2+d^2=R^2.
-\]
+球面被任一平面截得的截线是圆。
+
+\begin{corollarybox}[球的核心截面]
+  若球心到截面的距离为 $d$、截面圆半径为 $r$，连接球心、截面圆心和截面圆上一点，得到直角三角形，因此
+  \[
+    \boxed{r^2+d^2=R^2}.
+  \]
+  球的截面、内切与外接问题，通常都先压缩到这个平面图。
+\end{corollarybox}
 
 \begin{center}
 \begin{tikzpicture}[scale=.9]
@@ -469,40 +621,57 @@ $x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
 \end{center}
 过球心的截面圆称为大圆；球面上两点间的最短球面距离沿过两点的大圆劣弧量取。
 
-\[
-  S_{\text{球}}=4\pi R^2,
-  \qquad
-  V_{\text{球}}=\frac43\pi R^3.
-\]
-
-记忆时不要把两式割裂：球的表面积等于半径为 $R$ 的大圆面积的 $4$ 倍；球的体积还可写成
-\[
-  V_{\text{球}}=\frac R3S_{\text{球}}.
-\]
-后一个关系可理解为把球面分成许多很小的面片，并把每个面片与球心连成高近似为 $R$ 的小棱锥；所有小棱锥体积相加即为球体积。
+\begin{corollarybox}[球的面积与体积关系]
+  \[
+    S_{\text{球}}=4\pi R^2,
+    \qquad
+    V_{\text{球}}=\frac43\pi R^3=\frac R3S_{\text{球}}.
+  \]
+  表面积是半径为 $R$ 的大圆面积的 $4$ 倍。把球面分成小面片并与球心连接，可把球看作许多高近似为 $R$ 的小棱锥，故 $V=RS/3$。
+\end{corollarybox}
 
 \subsection{内切球与外接球}
 
-球面与多面体各面相切时，球为多面体的内切球。设内切球半径为 $r$、多面体表面积为 $S_{\text{表}}$，把球心与各面连接并分割成若干棱锥，有
-\[
-  V=\frac13rS_{\text{表}}.
-\]
+\begin{corollarybox}[多面体内切球的体积分割]
+  球面与多面体各面相切时，球为内切球。以球心为顶点、各面为底分割多面体，每个小棱锥的高都等于内切球半径 $r$，所以
+  \[
+    \boxed{V=\frac13rS_{\text{表}}}.
+  \]
+\end{corollarybox}
 
-球面经过多面体全部顶点时，球为多面体的外接球。正四面体棱长为 $a$ 时：
-\[
-  h=\frac{\sqrt6}{3}a,
-  \qquad
-  r=\frac{\sqrt6}{12}a,
-  \qquad
-  R=\frac{\sqrt6}{4}a,
-  \qquad
-  R=3r.
-\]
+\begin{corollarybox}[正四面体的内外接球半径]
+  正四面体棱长为 $a$ 时，内、外球心重合并位于高线上，且
+  \[
+    h=\frac{\sqrt6}{3}a,
+    \quad r=\frac h4=\frac{\sqrt6}{12}a,
+    \quad R=\frac{3h}{4}=\frac{\sqrt6}{4}a,
+    \quad \boxed{R=3r}.
+  \]
+\end{corollarybox}
 
 处理内外接球题，先找对称轴与截面：把空间问题压缩为包含球心、切点或顶点的平面图形，再用勾股定理。
 
 \begin{examplebox}[原稿例：截面圆反求球半径]
   球面上一截面内有 $\triangle ABC$，$AB=BC=2$、$AC=2\sqrt2$；球心到截面距离为 $d=R/2$。求球的表面积与体积。
+
+  \begin{center}
+  \begin{tikzpicture}[scale=.58]
+    \draw[sg edge] (0,0) circle (1.8);
+    \coordinate (A) at (-1.27,-1.27); \coordinate (B) at (-1.27,1.27); \coordinate (C) at (1.27,1.27); \coordinate (H) at (0,0);
+    \draw[very thick,BookGold] (A)--(B)--(C)--cycle;
+    \draw[sg aux] (A)--(C);
+    \foreach \q/\pos in {A/below,B/above,C/right,H/below}\node[sg label,\pos] at (\q) {$\q$};
+    \draw[sg aux] (B)++(.18,0)--++(0,-.18)--++(.18,0);
+    \coordinate (O) at (5.1,0); \coordinate (H2) at (6.55,0); \coordinate (Q) at (6.55,2.35);
+    \draw[very thick,BookGold] (O)--(Q);
+    \draw[sg edge] (O)--(H2)--(Q);
+    \draw[sg aux] (H2)++(-.18,0)--++(0,.18)--++(.18,0);
+    \node[sg label,left] at (O) {$O$}; \node[sg label,right] at (H2) {$H$}; \node[sg label,above] at (Q) {$A$};
+    \node[sg label,left] at ($(O)!.55!(Q)$) {$R$}; \node[sg label,right] at ($(H2)!.5!(Q)$) {$r$};
+    \node[sg label,below] at ($(O)!.5!(H2)+(0,-.18)$) {$d=R/2$};
+  \end{tikzpicture}
+  \sgcaption{先在截面内求 $r$，再回到球心截面求 $R$。}
+  \end{center}
 
   \textbf{最短解：}$AB^2+BC^2=AC^2$，故 $\triangle ABC$ 为直角三角形，截面圆半径等于斜边一半：$r=AC/2=\sqrt2$。于是
   \[
@@ -518,7 +687,19 @@ $x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
 \end{examplebox}
 
 \begin{examplebox}[原稿例：正四面体的内、外接球]
-  正四面体棱长为 $a$。底面中心记为 $O$，顶点为 $P$。底面高为 $\sqrt3a/2$，故顶点到底面中心的水平距离为 $a/\sqrt3$；由勾股定理
+  正四面体棱长为 $a$。底面中心记为 $O$，顶点为 $P$。底面高为 $\sqrt3a/2$，故底面任一顶点到 $O$ 的距离为 $a/\sqrt3$；由勾股定理
+  \begin{center}
+  \begin{tikzpicture}[scale=.62]
+    \coordinate (A) at (0,0); \coordinate (B) at (5,0); \coordinate (O) at (2.5,0); \coordinate (P) at (2.5,4.2); \coordinate (G) at (2.5,1.05);
+    \draw[sg edge] (A)--(B)--(P)--cycle;
+    \draw[very thick,BookBlue] (P)--(O) node[midway,left,sg label] {$h$};
+    \node[sg mark,label={[sg label]right:$G$}] at (G) {};
+    \node[sg label,below] at (O) {$O$}; \node[sg label,above] at (P) {$P$};
+    \draw[very thick,BookGold] (G)--(O) node[midway,right,sg label] {$r$};
+    \draw[very thick,BookGold] (G)--(P) node[midway,right,sg label] {$R$};
+    \node[font=\small,align=left] at (8.2,2.1) {$GO=r=h/4$\\$GP=R=3h/4$\\内、外球心同为 $G$};
+  \end{tikzpicture}
+  \end{center}
   \[
     PO=h=\sqrt{a^2-\frac{a^2}{3}}=\frac{\sqrt6}{3}a.
   \]
@@ -535,7 +716,9 @@ $x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
 
 光线照射物体，在平面上形成的影子是投影。投影线交于一点的是中心投影；投影线互相平行的是平行投影。平行投影又分为斜投影和正投影（投影线垂直投影面）。
 
-平行投影保持共线性和平行性；与投影面平行的线段、平面图形保持真实长度与形状。它一般不保持角度，也不保持不与投影面平行的长度。
+\begin{corollarybox}[平行投影的保持量]
+  平行投影保持共线性和平行性；与投影面平行的线段、平面图形保持真实长度与形状。它一般不保持角度，也不保持不与投影面平行的长度。
+\end{corollarybox}
 
 \subsection{三视图}
 
@@ -543,7 +726,9 @@ $x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
 \[
   \text{长与高},\qquad\text{宽与高},\qquad\text{长与宽}.
 \]
-排图遵循“长对正、高平齐、宽相等”。可见轮廓画实线，不可见棱画虚线。由三视图还原几何体时，先由俯视图定底面位置，再由正、侧视图补高度。
+\begin{corollarybox}[三视图的尺寸对应]
+  排图遵循“长对正、高平齐、宽相等”。可见轮廓画实线，不可见棱画虚线。还原几何体时，先由俯视图定底面位置，再由正、侧视图补高度。
+\end{corollarybox}
 
 \begin{center}
 \begin{tikzpicture}[scale=.78]
@@ -572,12 +757,37 @@ $x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
 \begin{examplebox}[原稿型：由三视图还原]
   若俯视图是 $2\times2$ 方格，四格均有物体；正视图两列最高层数为 $2,1$，侧视图两列最高层数也为 $2,1$，则先在俯视图四格放一层，再把唯一的第二层放在同时满足两张“高度为 2”投影的交叉格。
 
+  \begin{center}
+  \begin{tikzpicture}[scale=.58]
+    \draw[sg edge] (0,0) grid (2,2);
+    \node at (.5,.5) {$2$}; \node at (1.5,.5) {$1$}; \node at (.5,1.5) {$1$}; \node at (1.5,1.5) {$1$};
+    \node[font=\small] at (1,-.55) {俯视位置与层数};
+    \draw[sg edge] (3.5,0)--(3.5,2)--(4.4,2)--(4.4,0)--(5.3,0)--(5.3,1)--(6.2,1)--(6.2,0);
+    \draw[sg hidden] (4.4,0)--(4.4,2) (5.3,0)--(5.3,1);
+    \node[font=\small] at (4.85,-.55) {正视：$2,1$};
+    \draw[sg edge] (7.3,0)--(7.3,2)--(8.2,2)--(8.2,0)--(9.1,0)--(9.1,1)--(10,1)--(10,0);
+    \node[font=\small] at (8.65,-.55) {侧视：$2,1$};
+    \draw[sg aux,-{Latex[length=2mm]}] (6.35,1)--(7.05,1);
+  \end{tikzpicture}
+  \end{center}
+
   \textbf{速查：}俯视图管“哪里有”；正、侧视图管“每一列最高多高”。还原题本质是两组最大值约束的交叉定位。
 \end{examplebox}
 
 \subsection{斜二测直观图}
 
-通常取 $x$ 轴水平、$z$ 轴竖直、$y$ 轴与 $x$ 轴成 $45^\circ$ 或 $135^\circ$。与 $x,z$ 轴平行的长度不变，与 $y$ 轴平行的长度取原来的一半；平行关系保持不变。先画底面，再沿 $z$ 轴补高度，最后连接并区分实、虚线。
+\begin{corollarybox}[斜二测的长度规则]
+  通常取 $x$ 轴水平、$z$ 轴竖直、$y$ 轴与 $x$ 轴成 $45^\circ$ 或 $135^\circ$。与 $x,z$ 轴平行的长度不变，与 $y$ 轴平行的长度取原来的一半；平行关系保持不变。
+  \begin{center}
+  \begin{tikzpicture}[scale=.62]
+    \draw[sg edge,-{Latex[length=2mm]}] (0,0)--(3.3,0) node[right,sg label] {$x$};
+    \draw[sg edge,-{Latex[length=2mm]}] (0,0)--(0,2.5) node[above,sg label] {$z$};
+    \draw[sg edge,-{Latex[length=2mm]}] (0,0)--(1.55,1.55) node[above,sg label] {$y$};
+    \draw[very thick,BookGold] (.5,.15)--(2.5,.15)--(3.25,.9)--(1.25,.9)--cycle;
+    \node[font=\small,align=left] at (6.1,1.15) {$x,z$ 方向：原长\\$y$ 方向：原长的 $1/2$\\先底面，再补 $z$ 向高度};
+  \end{tikzpicture}
+  \end{center}
+\end{corollarybox}
 
 \section{三余弦定理}
 
@@ -621,7 +831,12 @@ $x,y,z$ 轴所成角 $\alpha,\beta,\gamma$ 满足
   =\left(\overrightarrow{AO}+\overrightarrow{OP}\right)\cdot\overrightarrow{AB}
   =\overrightarrow{AO}\cdot\overrightarrow{AB}.
 \]
-两边除以 $|AP|\,|AB|$，再插入 $|AO|/|AP|=\cos\theta$，即得结论。令 $\psi=90^\circ$，便得到三垂线定理及其逆定理。
+两边除以 $|AP|\,|AB|$，再插入 $|AO|/|AP|=\cos\theta$，即得结论。
+
+\begin{corollarybox}[三余弦定理包含三垂线定理]
+  令 $\psi=90^\circ$，则 $\cos\psi=0$。因斜线与射影夹角 $\theta<90^\circ$，$\cos\theta\ne0$，所以
+  $\cos\varphi=0$，即 $OA\perp AB$；反向推理同样成立。这正是三垂线定理及其逆定理。
+\end{corollarybox}
 
 \section{判定链速查}
 

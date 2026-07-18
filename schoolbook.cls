@@ -85,6 +85,20 @@
   after skip=6pt
 }
 
+\newtcolorbox{corollarybox}[1][]{
+  title={推论\if\relax\detokenize{#1}\relax\else：#1\fi},
+  colback=BookGold!7,
+  colframe=BookGold,
+  fonttitle=\bfseries,
+  boxsep=3pt,
+  left=5pt,
+  right=5pt,
+  top=4pt,
+  bottom=4pt,
+  before skip=6pt,
+  after skip=6pt
+}
+
 \newtcolorbox{examplebox}[1][]{
   title={例题\if\relax\detokenize{#1}\relax\else：#1\fi},
   colback=BookGray,
