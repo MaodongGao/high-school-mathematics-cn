@@ -21,6 +21,16 @@ editing textbook content.
 
 - Inspect the relevant source PDF pages before calling an example source-based.
   Source files stay outside the repository and must not be copied here.
+- Before marking a source chapter complete, create or update a page-by-page
+  example inventory under `sources/`. Every source example must be marked as
+  included, merged, pending, or intentionally omitted. An omission must include
+  a concrete reason; never silently drop an example.
+- Prefer including source examples. Routine examples may be merged into one
+  worked box, but the inventory must still list each original item. Hard,
+  representative, or method-rich examples require a strong reason to omit.
+- If the source itself is ambiguous or internally inconsistent, preserve the
+  ambiguity in an explicit `辨析` or `\sourcetodo`; do not silently repair the
+  source while still labeling the result as an original example.
 - Every `examplebox` title must begin with exactly one provenance label:
   `原稿例：`, `原稿型：`, `原稿方法：`, or `补充：`.
 - Any problem introduced by an agent must be labeled `补充：`. Never present an
@@ -70,4 +80,4 @@ editing textbook content.
 
 Do not claim a chapter is complete merely because it compiles. Completion
 requires source fidelity, coherent ordering, representative examples, diagrams,
-and visual PDF review.
+visual PDF review, and a reconciled example inventory with no unexplained gaps.
