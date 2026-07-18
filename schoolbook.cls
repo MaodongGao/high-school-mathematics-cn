@@ -11,6 +11,8 @@
 
 \definecolor{BookBlue}{HTML}{245B78}
 \definecolor{BookBlueLight}{HTML}{EAF2F6}
+\definecolor{BookGreen}{HTML}{4F7555}
+\definecolor{BookGreenLight}{HTML}{EDF4EE}
 \definecolor{BookGold}{HTML}{B07A28}
 \definecolor{BookGray}{HTML}{F4F5F6}
 
@@ -87,8 +89,8 @@
 
 \newtcolorbox{corollarybox}[1][]{
   title={推论\if\relax\detokenize{#1}\relax\else：#1\fi},
-  colback=BookGold!7,
-  colframe=BookGold,
+  colback=BookGreenLight,
+  colframe=BookGreen,
   fonttitle=\bfseries,
   boxsep=3pt,
   left=5pt,
