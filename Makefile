@@ -1,13 +1,16 @@
 MAIN := main
 OUT := output/pdf
 
-.PHONY: pdf watch clean distclean
+.PHONY: editorial-check pdf watch clean distclean
 
-pdf:
+editorial-check:
+	./scripts/check-editorial-policy.sh
+
+pdf: editorial-check
 	mkdir -p $(OUT) output/aux
 	latexmk $(MAIN).tex
 
-watch:
+watch: editorial-check
 	mkdir -p $(OUT) output/aux
 	latexmk -pvc $(MAIN).tex
 
