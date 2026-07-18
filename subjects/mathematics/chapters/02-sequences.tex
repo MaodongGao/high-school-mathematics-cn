@@ -22,6 +22,45 @@
   $a_n$ 是第 $n$ 项。若 $a_n$ 可由 $n$ 的式子直接表示，这个式子称为通项公式；若从已知的前若干项能够依次确定后项，这种关系称为递推关系。
 \end{definitionbox}
 
+\begin{examplebox}[原稿型：从排列规律写出通项]
+  写出下列数列的一个通项公式：
+  \[
+  \begin{array}{ll}
+    \text{(1) }1,3,7,15,\ldots
+      &\text{(2) }\dfrac34,-\dfrac58,\dfrac7{16},-\dfrac9{32},\ldots\\[6pt]
+    \text{(3) }5,55,555,\ldots
+      &\text{(4) }0.9,0.99,0.999,\ldots\\[3pt]
+    \text{(5) }1,0,1,0,\ldots
+      &\text{(6) }1,2,2,4,3,8,4,16,\ldots\\[3pt]
+    \text{(7) }1,1,3,3,5,5,7,7,\ldots
+      &\text{(8) }9,99,999,\ldots
+  \end{array}
+  \]
+
+  \textbf{解：}
+  \begin{align*}
+    \text{(1) }a_n&=2^n-1,
+    &\text{(2) }a_n&=(-1)^{n+1}\frac{2n+1}{2^{n+1}},\\
+    \text{(3) }a_n&=\frac59(10^n-1),
+    &\text{(4) }a_n&=1-10^{-n},\\
+    \text{(5) }a_n&=\frac{1+(-1)^{n+1}}2,
+    &\text{(8) }a_n&=10^n-1.
+  \end{align*}
+  第 (6) 题把奇数位与偶数位分开：
+  \[
+    a_n=
+    \begin{cases}
+      \dfrac{n+1}{2},&n\text{ 为奇数},\\[4pt]
+      2^{n/2},&n\text{ 为偶数}.
+    \end{cases}
+  \]
+  第 (7) 题可写为
+  \[
+    a_n=2\left\lfloor\frac{n+1}{2}\right\rfloor-1.
+  \]
+  \textbf{方法启示：}先分辨规律来自“值的变化”还是“位置的奇偶”。位值数列先乘 $9$ 化成 $10^n-1$；交错数列用 $(-1)^n$；两条子数列交织时用分段式。
+\end{examplebox}
+
 数列可看作定义域为正整数集（或其有限子集）的函数。它既可以列表，也可以用通项、递推关系或点列 $(n,a_n)$ 表示。因为自变量只取整数，研究其增减时必须比较相邻两项，不能把连续函数的结论不加辨析地搬过来。
 
 \begin{center}
@@ -106,6 +145,32 @@
   第二个公式来自倒序相加：$S_n$ 与倒写后的 $S_n$ 对应相加，每一列都等于 $a_1+a_n$。
 \end{lawbox}
 
+\begin{examplebox}[原稿型：等差数列的参数互求]
+  \begin{enumerate}
+    \item 已知 $a_1=6,d=3$，求 $S_{10}$；
+    \item 已知 $a_1=2,a_8=-6$，求 $S_8$；
+    \item 已知 $d=2,a_{20}=29$，求 $S_{20}$；
+    \item 已知 $a_1=-10,a_2=-6,S_n=54$，求 $n$。
+  \end{enumerate}
+
+  \textbf{解：}
+  \begin{align*}
+    \text{(1) }S_{10}&=10\cdot6+\frac{10\cdot9}{2}\cdot3=195;\\
+    \text{(2) }S_8&=\frac{8(2-6)}2=-16;\\
+    \text{(3) }a_1&=a_{20}-19d=-9,
+      &S_{20}&=\frac{20(-9+29)}2=200.
+  \end{align*}
+  第 (4) 题中 $d=4$，故
+  \[
+    54=-10n+\frac{n(n-1)}2\cdot4,
+  \]
+  即 $n^2-6n-27=0$。取正整数解，得
+  \[
+    \boxed{n=9}.
+  \]
+  \textbf{方法启示：}$a_1,d,a_n,n,S_n$ 五个量中，任给三个通常可以确定其余两个；选公式时优先使用题目已经给出的量。
+\end{examplebox}
+
 \begin{corollarybox}[等差数列的对称性]
   若下标满足 $i+j=p+q$，则
   \[
@@ -143,9 +208,16 @@
   \[
     a_2^2+a_3^2=a_4^2+a_5^2,\qquad S_7=7.
   \]
-  求 $a_n$ 与 $S_n$。
+  \begin{enumerate}
+    \item 求 $a_n$ 与 $S_n$；
+    \item 求所有正整数 $m$，使
+      \[
+        \frac{a_m a_{m+1}}{a_{m+2}}
+      \]
+      是数列 $\{a_n\}$ 中的项。
+  \end{enumerate}
 
-  \textbf{解：}设公差为 $d$。移项并作平方差分解：
+  \textbf{解（1）：}设公差为 $d$。移项并作平方差分解：
   \begin{align*}
     a_2^2-a_4^2&=a_5^2-a_3^2,\\
     (a_2-a_4)(a_2+a_4)&=(a_5-a_3)(a_5+a_3).
@@ -163,7 +235,33 @@
     \boxed{a_n=2n-7},\qquad
     \boxed{S_n=n^2-6n}.
   \]
+\end{examplebox}
+
+\begin{examplebox}[原稿例：平方条件揭示相邻项（续，第2问）]
+  \textbf{解（2）：}令
+  \[
+    t=a_{m+2}=2m-3.
+  \]
+  因为 $m$ 是正整数，所以 $t$ 是不小于 $-1$ 的奇数，且 $t\ne0$。又
+  \[
+    a_m=t-4,\qquad a_{m+1}=t-2,
+  \]
+  从而
+  \[
+    \frac{a_ma_{m+1}}{a_{m+2}}
+      =\frac{(t-4)(t-2)}t
+      =t-6+\frac8t.
+  \]
+  若它是 $\{a_n\}$ 中的一项，就必须是整数，故 $t\mid8$。结合 $t$ 为奇数及
+  $t\ge-1$，只有 $t=-1$ 或 $t=1$。
+
+  当 $t=-1$ 时，上式为 $-15$，而 $a_n=2n-7\ge-5$，不合题意；当 $t=1$ 时，
+  上式为 $3=a_5$，且 $2m-3=1$ 给出 $m=2$。所以
+  \[
+    \boxed{m=2}.
+  \]
   \textbf{方法启示：}平方条件先用平方差拆开，再把“项的和”转成下标和相同的对称关系；这比一开始完全展开 $a_1,d$ 更能暴露结构。
+  第二问则先用中间项 $t=a_{m+2}$ 统一表示相邻项，再由整除性压缩可能取值。
 \end{examplebox}
 
 \begin{examplebox}[原稿方法：由两组部分和之比求中间项之比]
@@ -171,7 +269,7 @@
   \[
     \frac{S_n}{T_n}=\frac{7n+1}{4n+27},
   \]
-  求 $a_{11}/b_{11}$。
+  求 $a_{11}/b_{11}$ 与 $a_5/b_9$。
 
   \textbf{解：}等差数列连续奇数项的和等于“项数乘中间项”，所以
   \[
@@ -184,7 +282,130 @@
     =\frac{7\cdot21+1}{4\cdot21+27}
     =\boxed{\frac43}.
   \]
+  为求异下标项之比，把部分和写成二次式。存在非零常数 $c$，使
+  \begin{align*}
+    S_n&=c(7n+1)n,\\
+    T_n&=c(4n+27)n.
+  \end{align*}
+  因而
+  \begin{align*}
+    a_n&=S_n-S_{n-1}=c(14n-6),\\
+    b_n&=T_n-T_{n-1}=c(8n+23).
+  \end{align*}
+  所以
+  \[
+    \frac{a_5}{b_9}=\frac{64c}{95c}=\boxed{\frac{64}{95}}.
+  \]
   \textbf{关键转化：}要求第 $m$ 项之比，应想到取前 $2m-1$ 项，使 $a_m,b_m$ 同时成为各自的中间项。
+  若目标项下标不同，则应把 $S_n,T_n$ 的公共比例常数保留下来，再由相邻部分和作差。
+\end{examplebox}
+
+\begin{examplebox}[原稿例：由两个部分和值外推第三个部分和]
+  等差数列 $\{a_n\}$ 的前 $n$ 项和为 $S_n$。已知
+  \[
+    S_m=n,qquad S_n=m,qquad m\ne n,
+  \]
+  求 $S_{m+n}$。
+
+  \textbf{解：}等差数列的部分和可写成
+  \[
+    S_k=Ak^2+Bk.
+  \]
+  代入已知条件：
+  \[
+    Am^2+Bm=n,qquad An^2+Bn=m.
+  \]
+  两式分别除以 $m,n$，再相减：
+  \[
+    A(m-n)=\frac nm-\frac mn
+      =-\frac{(m-n)(m+n)}{mn},
+  \]
+  故 $A=-(m+n)/(mn)$。再代回可得
+  \[
+    A(m+n)+B=-1.
+  \]
+  因此
+  \[
+    S_{m+n}=(m+n)[A(m+n)+B]
+      =\boxed{-(m+n)}.
+  \]
+  \textbf{方法启示：}不必先求首项和公差；把 $S_k$ 视为没有常数项的二次式，两个给定值已经足够外推新的部分和。
+\end{examplebox}
+
+\begin{examplebox}[原稿例：函数对称性化简离散求和]
+  设
+  \[
+    f(x)=\frac{2^x}{2^x+\sqrt2}.
+  \]
+  曲线 $y=f(x)$ 上有两点 $P_1(x_1,y_1)$、$P_2(x_2,y_2)$，点 $P$ 满足
+  \[
+    \overrightarrow{OP}=\frac12
+      \left(\overrightarrow{OP_1}+\overrightarrow{OP_2}\right),
+  \]
+  且 $P$ 的横坐标为 $1/2$。
+  \begin{enumerate}
+    \item 证明 $P$ 的纵坐标为定值；
+    \item 令 $S_n=\sum_{k=1}^{n}f(k/n)$，求 $S_n$；
+    \item 令
+      \[
+        b_n=\frac1{(S_n+\sqrt2)(S_{n+1}+\sqrt2)},
+      \]
+      $T_n$ 为 $\{b_n\}$ 的前 $n$ 项和。若
+      \[
+        T_n<a(S_{n+2}+\sqrt2)
+      \]
+      对一切正整数 $n$ 恒成立，求实数 $a$ 的范围。
+  \end{enumerate}
+
+  \textbf{解（1）：}直接计算可得
+  \[
+    f(x)+f(1-x)=1.
+  \]
+  $P$ 是 $P_1P_2$ 的中点，而其横坐标为 $1/2$，所以 $x_1+x_2=1$。于是
+  \[
+    y_P=\frac{f(x_1)+f(x_2)}2
+       =\frac{f(x_1)+f(1-x_1)}2
+       =\boxed{\frac12}.
+  \]
+
+  \textbf{解（2）：}把 $k/n$ 与 $1-k/n$ 配对：
+  \begin{align*}
+    2S_n
+      &=\sum_{k=1}^{n-1}\left[f\left(\frac{k}{n}\right)
+          +f\left(1-\frac{k}{n}\right)\right]+2f(1)\\
+      &=(n-1)+2(2-\sqrt2).
+  \end{align*}
+  因此
+  \[
+    \boxed{S_n=\frac{n+3}{2}-\sqrt2}.
+  \]
+\end{examplebox}
+
+\begin{examplebox}[原稿例：函数对称性化简离散求和（续，第3问）]
+  \textbf{解（3）：}由上式，
+  \[
+    b_n=\frac4{(n+3)(n+4)}
+       =4\left(\frac1{n+3}-\frac1{n+4}\right),
+  \]
+  所以
+  \[
+    T_n=1-\frac4{n+4}=\frac n{n+4}.
+  \]
+  原不等式等价于
+  \[
+    a>\frac{T_n}{S_{n+2}+\sqrt2}
+      =\frac{2n}{(n+4)(n+5)}.
+  \]
+  记右端为 $u_n$。由
+  \[
+    u_{n+1}-u_n
+      =\frac{2(4-n)}{(n+4)(n+5)(n+6)}
+  \]
+  可知最大值在相邻整数处取得；直接比较得 $u_4=u_5=1/9$。由于原不等式是严格不等式，故
+  \[
+    \boxed{a>\frac19}.
+  \]
+  \textbf{方法启示：}连续函数中的对称恒等式 $f(x)+f(1-x)=1$，同时控制了中点坐标和离散求和；第三问再把显式和式转成裂项数列。
 \end{examplebox}
 
 \section{等比数列}
@@ -374,6 +595,74 @@
   \textbf{方法启示：}待定的一次式不是凭经验硬凑；把目标关系写出后比较 $n$ 的系数与常数项，就能系统确定。
 \end{examplebox}
 
+\begin{examplebox}[原稿型：加入二次式构造等比数列]
+  已知 $a_1=2$，
+  \[
+    a_{n+1}=3a_n+2n^2+3n.
+  \]
+  求 $a_n$。
+
+  \textbf{解：}设
+  \[
+    b_n=a_n+An^2+Bn+C,
+  \]
+  并要求 $b_{n+1}=3b_n$。比较 $n^2,n$ 和常数项的系数，得到
+  \[
+    2+A=3A,qquad 3+2A+B=3B,qquad A+B+C=3C.
+  \]
+  解得
+  \[
+    A=1,qquad B=\frac52,qquad C=\frac74.
+  \]
+  因此 $\{a_n+n^2+\tfrac52n+\tfrac74\}$ 是公比为 $3$ 的等比数列，其首项为 $29/4$。故
+  \[
+    \boxed{a_n=\frac{29}{4}3^{n-1}-n^2-\frac52n-\frac74}.
+  \]
+  \textbf{方法启示：}非齐次项是二次多项式时，平移项也要取一般二次式；少写常数项会使系数方程无法闭合。
+\end{examplebox}
+
+\begin{examplebox}[原稿方法：指数型非齐次递推的三种变换]
+  已知 $a_1=2$，
+  \[
+    a_{n+1}=3a_n+2^n.
+  \]
+  用不同构造求 $a_n$。
+
+  \textbf{方法一：配指数项。}设 $b_n=a_n+A2^n$，要求 $b_{n+1}=3b_n$。比较 $2^n$ 的系数：
+  \[
+    1+2A=3A,qquad A=1.
+  \]
+  于是 $b_1=4$，从而
+  \[
+    a_n+2^n=4\cdot3^{n-1}.
+  \]
+
+  \textbf{方法二：除以齐次部分。}原式除以 $3^{n+1}$：
+  \[
+    \frac{a_{n+1}}{3^{n+1}}-\frac{a_n}{3^n}
+      =\frac13\left(\frac23\right)^n.
+  \]
+  对 $n=1,2,\ldots,N-1$ 累加，左端首尾相消；右端为等比和。整理后仍得
+  \[
+    a_N=4\cdot3^{N-1}-2^N.
+  \]
+
+  \textbf{方法三：除以非齐次指数项。}令 $c_n=a_n/2^n$，则
+  \[
+    c_{n+1}=\frac32c_n+\frac12,qquad
+    c_{n+1}+1=\frac32(c_n+1).
+  \]
+  因为 $c_1=1$，所以
+  \[
+    c_n+1=2\left(\frac32\right)^{n-1}.
+  \]
+  三种方法给出同一通项：
+  \[
+    \boxed{a_n=4\cdot3^{n-1}-2^n}.
+  \]
+  \textbf{方法启示：}配项直接识别特解；除以 $3^n$ 把递推化成可累加的差；除以 $2^n$ 则把它化成常数型一阶递推。三种形式分别突出“构造、相消、平移”。
+\end{examplebox}
+
 \subsection{分式递推：围绕不动点变换}
 
 \begin{lawbox}[分式递推的不动点法]
@@ -384,6 +673,36 @@
   \]
   从而把原递推化成等比数列。若其中一个不动点使式子更简单，也可只取倒数 $1/(a_n-\alpha)$ 再平移。
 \end{lawbox}
+
+\begin{examplebox}[原稿方法：平方迭代的三种通项视角]
+  已知 $a_1=2$，$a_{n+1}=a_n^2$。求 $a_n$。
+
+  \textbf{方法一：直接迭代。}
+  \[
+    a_n=a_{n-1}^2=a_{n-2}^{2^2}=\cdots=a_1^{2^{n-1}},
+  \]
+  故 $a_n=2^{2^{n-1}}$。
+
+  \textbf{方法二：把指数单独设为数列。}令 $a_n=2^{c_n}$。由
+  \[
+    2^{c_{n+1}}=(2^{c_n})^2
+  \]
+  得 $c_{n+1}=2c_n$，且 $c_1=1$，所以 $c_n=2^{n-1}$。
+
+  \textbf{方法三：取对数。}各项均为正，故
+  \[
+    \ln a_{n+1}=2\ln a_n.
+  \]
+  数列 $\{\ln a_n\}$ 是首项 $\ln2$、公比 $2$ 的等比数列，于是
+  \[
+    \ln a_n=2^{n-1}\ln2.
+  \]
+  三种视角都得到
+  \[
+    \boxed{a_n=2^{2^{n-1}}}.
+  \]
+  \textbf{方法启示：}直接迭代看见指数翻倍；设指数把“幂的递推”降为指数的递推；取对数则把乘方变成倍乘。这三种表达适用于不同的题目后续。
+\end{examplebox}
 
 \begin{examplebox}[原稿例：分式递推的倒数平移]
   已知 $a_1=2$，
@@ -465,12 +784,12 @@
   常数由初值确定。
 \end{lawbox}
 
-\begin{examplebox}[原稿方法：同时构造两条一阶递推]
-  对递推关系
+\begin{examplebox}[原稿例：同时构造两条一阶递推求通项]
+  已知 $a_1=5$、$a_2=2$，且
   \[
     a_n=2a_{n-1}+3a_{n-2}\qquad(n\ge3),
   \]
-  说明如何降阶。
+  求 $a_n$。
 
   \textbf{解：}特征方程
   \[
@@ -481,7 +800,21 @@
     a_n+a_{n-1}&=3(a_{n-1}+a_{n-2}),\\
     a_n-3a_{n-1}&=-(a_{n-1}-3a_{n-2}).
   \end{align*}
-  因此 $\{a_n+a_{n-1}\}$ 与 $\{a_n-3a_{n-1}\}$ 分别是公比为 $3$ 与 $-1$ 的等比数列。代入题目给定的两个初值后，两式联立即可求出 $a_n$。
+  因此 $\{a_n+a_{n-1}\}$ 与 $\{a_n-3a_{n-1}\}$ 分别是公比为 $3$ 与 $-1$ 的等比数列。代入初值：
+  \begin{align*}
+    a_n+a_{n-1}&=(a_2+a_1)3^{n-2}=7\cdot3^{n-2},\\
+    a_n-3a_{n-1}&=(a_2-3a_1)(-1)^{n-2}
+      =-13(-1)^{n-2}.
+  \end{align*}
+  用第一式的三倍加第二式，消去 $a_{n-1}$，得到
+  \[
+    4a_n=7\cdot3^{n-1}-13(-1)^{n-2}.
+  \]
+  因而
+  \[
+    \boxed{a_n=\frac{7\cdot3^{n-1}-13(-1)^n}4}.
+  \]
+  该式对一切正整数 $n$ 成立。
 
   \textbf{方法启示：}两个特征根对应两条独立的一阶关系。保留这一步构造，可以看清通项中两个指数项从何而来，而不是把特征根公式当作黑箱。
 \end{examplebox}
@@ -539,6 +872,32 @@
   \textbf{辨析：}若从 $k=2$ 就统一采用同一上界，只能得到较弱的常数。把少数边界项单独处理，常能显著改善整体估计。
 \end{examplebox}
 
+\begin{examplebox}[原稿例：三因子裂项估计立方倒数和]
+  证明
+  \[
+    1+\frac1{2^3}+\frac1{3^3}+\cdots+\frac1{n^3}<\frac54
+    \qquad(n\ge2).
+  \]
+
+  \textbf{证明：}对 $k\ge2$，
+  \[
+    k^3>(k-1)k(k+1),
+  \]
+  因而
+  \begin{align*}
+    \frac1{k^3}
+      &<\frac1{(k-1)k(k+1)}\\
+      &=\frac12\left[\frac1{(k-1)k}-\frac1{k(k+1)}\right].
+  \end{align*}
+  求和后首尾相消：
+  \[
+    1+\sum_{k=2}^{n}\frac1{k^3}
+      <1+\frac12\left(\frac12-\frac1{n(n+1)}\right)
+      <\frac54.
+  \]
+  \textbf{方法启示：}分母含三个连续因子时，先把它拆成两个相邻二因子分式之差；这会把三次型估计转为一次裂项。
+\end{examplebox}
+
 \begin{examplebox}[原稿例：根式项的两种相邻放缩]
   设
   \[
@@ -569,4 +928,195 @@
     T_n<1+2(\sqrt n-1)=2\sqrt n-1<2\sqrt n.
   \]
   \textbf{方法启示：}同一个根式项，上界和下界要分别选择前后相邻的根式差；放缩方向改变，配对的下标也随之改变。
+\end{examplebox}
+
+\begin{examplebox}[原稿例：跨一项的根式差估计三次幂]
+  证明
+  \[
+    1+\frac1{(\sqrt2)^3}+\frac1{(\sqrt3)^3}
+      +\cdots+\frac1{(\sqrt n)^3}<3
+    \qquad(n\ge2).
+  \]
+
+  \textbf{证明：}对 $k\ge2$，有
+  \begin{align*}
+    \frac1{k^{3/2}}
+      &<\frac1{\sqrt{k-1}}-\frac1{\sqrt{k+1}}.
+  \end{align*}
+  事实上，右端等于
+  \[
+    \frac{2}{\sqrt{k-1}\sqrt{k+1}
+      (\sqrt{k+1}+\sqrt{k-1})},
+  \]
+  其中 $\sqrt{k-1}\sqrt{k+1}<k$，且
+  $\sqrt{k+1}+\sqrt{k-1}<2\sqrt k$，故分母小于 $2k^{3/2}$，所以上式大于
+  $1/k^{3/2}$。于是
+  \begin{align*}
+    1+\sum_{k=2}^{n}\frac1{k^{3/2}}
+      &<1+\sum_{k=2}^{n}
+        \left(\frac1{\sqrt{k-1}}-\frac1{\sqrt{k+1}}\right)\\
+      &=2+\frac1{\sqrt2}-\frac1{\sqrt n}-\frac1{\sqrt{n+1}}\\
+      &<3.
+  \end{align*}
+  \textbf{方法启示：}相邻一项的根式差约为 $k^{-1/2}$；要制造 $k^{-3/2}$，应把下标跨开一项，让一阶差再多带一个 $k^{-1}$ 量级。
+\end{examplebox}
+
+\subsection{递推关系与不等式的综合}
+
+\begin{examplebox}[原稿例：由“项是中项”同时推出通项和估计]
+  数列 $\{a_n\}$ 的前 $n$ 项和为 $S_n$，且 $a_n$ 是 $n$ 与 $S_n$ 的等差中项，即
+  \[
+    2a_n=n+S_n.
+  \]
+  \begin{enumerate}
+    \item 求证 $a_n=2a_{n-1}+1$，并求 $a_n$；
+    \item 证明 $\displaystyle\sum_{k=1}^{n}\frac1{a_k}<2$；
+    \item 对 $n\ge2$，证明
+      \[
+        \frac n3<\sum_{k=1}^{n}\frac{a_k}{a_{k+1}}<\frac n2.
+      \]
+  \end{enumerate}
+
+  \textbf{解（1）：}分别写出下标 $n$ 与 $n-1$ 的条件：
+  \[
+    2a_n=n+S_n,qquad 2a_{n-1}=n-1+S_{n-1}.
+  \]
+  两式相减，并用 $S_n-S_{n-1}=a_n$：
+  \[
+    2(a_n-a_{n-1})=1+a_n,
+  \]
+  即 $a_n=2a_{n-1}+1$。由 $n=1$ 时 $2a_1=1+a_1$，得 $a_1=1$。所以
+  \[
+    \boxed{a_n=2^n-1}.
+  \]
+
+  \textbf{证明（2）：}首项单独保留。对 $k\ge2$，
+  \[
+    \frac1{a_k}=\frac1{2^k-1}<\frac1{2^{k-1}}.
+  \]
+  因而
+  \[
+    \sum_{k=1}^{n}\frac1{a_k}
+      <1+\sum_{k=2}^{n}\frac1{2^{k-1}}<2.
+  \]
+
+  \textbf{证明（3）：}对任意 $k\ge1$，
+  \[
+    \frac{a_k}{a_{k+1}}
+      =\frac{2^k-1}{2^{k+1}-1}<\frac12.
+  \]
+  又当 $k\ge2$ 时，上式大于 $1/3$，而 $a_1/a_2=1/3$。所以当 $n\ge2$ 时，
+  \[
+    \sum_{k=1}^{n}\frac{a_k}{a_{k+1}}
+      >\frac n3,
+    \qquad
+    \sum_{k=1}^{n}\frac{a_k}{a_{k+1}}
+      <\frac n2.
+  \]
+  \textbf{方法启示：}第一问先把“项与和”的关系错开相减；得到指数通项后，后两问分别用等比上界和逐项夹逼。三问共享同一条结构链。
+\end{examplebox}
+
+\begin{examplebox}[原稿例：由部分和递推构造收敛型上界]
+  数列 $\{a_n\}$ 的前 $n$ 项和为 $S_n$，且
+  \[
+    S_1=2,qquad S_{n+1}=3S_n+2.
+  \]
+  \begin{enumerate}
+    \item 证明 $\{S_n+1\}$ 是等比数列，并求 $S_n$；
+    \item 令 $b_n=a_n/S_n^2$，证明
+      \[
+        b_1+b_2+\cdots+b_n<1.
+      \]
+  \end{enumerate}
+
+  \textbf{解（1）：}
+  \[
+    S_{n+1}+1=3(S_n+1).
+  \]
+  因为 $S_1+1=3$，故
+  \[
+    \boxed{S_n=3^n-1}.
+  \]
+
+  \textbf{证明（2）：}由 $a_n=S_n-S_{n-1}$ 可知
+  \[
+    a_n=2\cdot3^{n-1}\qquad(n\ge1),
+  \]
+  因而
+  \[
+    b_n=\frac{2\cdot3^{n-1}}{(3^n-1)^2}.
+  \]
+  先保留 $b_1=1/2$。当 $n\ge2$ 时，$3^n\ge9$，于是
+  \[
+    (3^n-1)^2>3^{2n-1},
+  \]
+  从而
+  \[
+    b_n<\frac{2\cdot3^{n-1}}{3^{2n-1}}=\frac2{3^n}.
+  \]
+  所以
+  \[
+    \sum_{k=1}^{n}b_k
+      <\frac12+\sum_{k=2}^{\infty}\frac2{3^k}
+      =\frac12+\frac13
+      =\frac56<1.
+  \]
+  \textbf{辨析：}原稿在尝试把 $b_n$ 与等比项比较后留下了若干未完成的估计。本解沿用这一方向，选择 $2/3^n$ 作为可直接求和的统一上界。
+\end{examplebox}
+
+\subsection{乘积放缩}
+
+\begin{examplebox}[原稿例：错位乘积与平方比较]
+  证明
+  \[
+    \frac21\cdot\frac43\cdot\frac65\cdots\frac{2n}{2n-1}
+      >\sqrt{2n+1}.
+  \]
+
+  \textbf{证明：}记
+  \[
+    A=\frac21\cdot\frac43\cdots\frac{2n}{2n-1},
+    \qquad
+    B=\frac32\cdot\frac54\cdots\frac{2n+1}{2n}.
+  \]
+  对应的每一项都有
+  \[
+    \frac{2k}{2k-1}>\frac{2k+1}{2k},
+  \]
+  故 $A>B>0$。另一方面，错位相乘后中间因子全部约去：
+  \[
+    AB=2n+1.
+  \]
+  因此 $A^2>AB=2n+1$，即
+  \[
+    \boxed{A>\sqrt{2n+1}}.
+  \]
+\end{examplebox}
+
+\begin{examplebox}[原稿例：三组错位乘积与立方比较]
+  证明
+  \[
+    \frac21\cdot\frac54\cdot\frac87\cdots
+      \frac{3n-1}{3n-2}>\sqrt[3]{3n+1}.
+  \]
+
+  \textbf{证明：}记
+  \begin{align*}
+    A&=\prod_{k=1}^{n}\frac{3k-1}{3k-2},\\
+    B&=\prod_{k=1}^{n}\frac{3k}{3k-1},\\
+    C&=\prod_{k=1}^{n}\frac{3k+1}{3k}.
+  \end{align*}
+  对每个 $k$，有
+  \[
+    \frac{3k-1}{3k-2}>\frac{3k}{3k-1}>\frac{3k+1}{3k},
+  \]
+  所以 $A>B>C>0$。三组乘积相乘时逐项约去：
+  \[
+    ABC=\prod_{k=1}^{n}\frac{3k+1}{3k-2}=3n+1.
+  \]
+  因此 $A^3>ABC=3n+1$，从而
+  \[
+    \boxed{A>\sqrt[3]{3n+1}}.
+  \]
+  \textbf{方法启示：}乘积不等式常通过“复制并错位”处理。要证平方根就构造两组乘积；要证三次方根就构造三组，并让它们相乘后发生大规模约分。
 \end{examplebox}
