@@ -17,6 +17,13 @@ if examples=$(rg -n '\\begin\{examplebox\}' subjects --glob '*.tex' | \
   status=1
 fi
 
+leaked_commands='(^|[^\\[:alpha:]])(qquad|quad|cdots|cdot|ldots|dfrac|tfrac|frac|sqrt|sum|prod|boxed|times|neq|geq|leq|gtreqless|overrightarrow)([^[:alpha:]]|$)'
+if leaks=$(rg -n "$leaked_commands" subjects --glob '*.tex'); then
+  echo "Editorial policy violation: probable LaTeX command missing a backslash:" >&2
+  echo "$leaks" >&2
+  status=1
+fi
+
 geometry_files=$(rg --files subjects -g '*geometry*.tex')
 missing_diagrams=''
 if [ -n "$geometry_files" ]; then
