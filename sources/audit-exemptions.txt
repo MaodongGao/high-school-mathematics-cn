@@ -1,0 +1,3 @@
+# Explicit legacy exemptions from the mandatory per-source audit files.
+# Do not add entries without the user's approval.
+math-01  # Completed before the audit-file requirement was introduced.

@@ -34,6 +34,16 @@ make pdf
 make watch
 ```
 
+章节交付前应运行完整验证并生成视觉检查页：
+
+```bash
+make verify
+make render-review
+```
+
+`make verify` 会检查 LaTeX 日志和最终 PDF 提取文本；`make render-review` 会在
+`tmp/pdfs/` 下生成逐页 PNG 与 contact sheet，供代理逐页检查后删除。视觉检查需要 Ghostscript；生成 contact sheet 还需要 ImageMagick 的 `montage`。
+
 ## 目录
 
 ```text
